@@ -1,5 +1,10 @@
 package fr.iutvalence.java.projets.shootemup;
 
+
+//FIXME si les vaisseaux ennemis se distinguent du vaisseau du joueur par le fait qu'ils peuvent sortir de la zone de jeu ...
+//FIXME .. il faudrait utiliser l'héritage ce qui simplifierait l'écriture de "deplacement" 
+
+
 /**
  * Gestion des unitées
  * @author Deguitre & Pignet
@@ -11,14 +16,21 @@ public class Ship
 	 * Indique une collision
 	 */
 	public static final int COLLISION = -3;
+	
+	// FIXME constante à deplacer dans Zone
 	/**
 	 * valeur des coordonnées x ou y max
 	 */
 	public static final int MAX = 100;
+	
+	// FIXME constante à deplacer dans Zone
 	/**
 	 * valeur des coordonnées x ou y min
 	 */
 	public static final int MIN = 100;
+	
+	
+	// FIXME remplacer par des excpetions
 	/**
 	 * Valeur retournée si les coordonnées sont à l'intérieur de la zone de jeux
 	 */
@@ -27,10 +39,14 @@ public class Ship
 	 * Valeur retournée si les coordonnées sont à l'extérieur de la zone de jeux
 	 */
 	public static final int OUT = -1;
+	
+	
 	/**
 	 * Variable représentant l'état de l'unitée (détruite 0 / pas détruite 1)
 	 */
 	private boolean etat;
+	
+	// FIXME regrouper les 2 informations dans un type Position (à écrire)
 	/**
 	 * emplacement sur l'axe x de l'unitée
 	 */
@@ -44,11 +60,15 @@ public class Ship
 	 * True si le vaisseau tir False sinon
 	 */
 	public boolean tir;
+	
+	// FIXME définir les valeurs possibles de type_ship par des constantes
 	/**
 	 * Représente le type de vaisseau
 	 */
 	public int type_ship;
 	
+	
+	// FIXME écrire un commentaire correct
 	/**
 	 * Initialise un vaisseau de type Joueur
 	 */
@@ -60,6 +80,8 @@ public class Ship
 		this.tir = false;	
 		this.type_ship = 1;
 	}
+	
+	
 	/**
 	 * Initialise un vaisseau de type ennemi (choix de la position de départ)
 	 * @param x position sur l'axe x
@@ -68,6 +90,8 @@ public class Ship
 	 */
 	public Ship(int x, int y,Zone terrain)
 	{
+		
+		//FIXME gérer les cas d'erreur
 		this.etat = true;
 		this.coord_x = x;
 		this.coord_y = y;

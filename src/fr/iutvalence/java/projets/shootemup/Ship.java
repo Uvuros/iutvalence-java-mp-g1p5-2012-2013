@@ -13,24 +13,46 @@ package fr.iutvalence.java.projets.shootemup;
 public class Ship
 {
 	/**
-	 * Indique une collision
+	 * Valeur représentant la mort du joueur  
 	 */
-	public static final int COLLISION = -3;
+	public static final int MORT = -1;
+	/**
+	 * Valeur indiquant que le joueur est en vie
+	 */
+	public static final int VIVANT = 1;
+	/**
+	 * Position du vaisseau 
+	 */
+	public Position position;	
+	/**
+	 * True si le vaisseau tir False sinon
+	 */
+	public boolean tir;
 	
-	// FIXME constante à deplacer dans Zone
+	/**
+	 * valeur du vaisseau joueur
+	 */
+	public static final int joueur = 1;
+	/**
+	 * valeur des vaisseaux de ennemis
+	 */
+	public static final int ennemi = 2;
+	/**
+	 * Représente le type de vaisseau
+	 */
+	public int type_ship;
+	/**
+	 * Etat du vaisseau, 1 pour VIVANT, -1 pour MORT
+	 */
+	public int etat;
 	/**
 	 * valeur des coordonnées x ou y max
 	 */
 	public static final int MAX = 100;
-	
-	// FIXME constante à deplacer dans Zone
 	/**
 	 * valeur des coordonnées x ou y min
 	 */
 	public static final int MIN = 100;
-	
-	
-	// FIXME remplacer par des excpetions
 	/**
 	 * Valeur retournée si les coordonnées sont à l'intérieur de la zone de jeux
 	 */
@@ -39,44 +61,20 @@ public class Ship
 	 * Valeur retournée si les coordonnées sont à l'extérieur de la zone de jeux
 	 */
 	public static final int OUT = -1;
-	
-	
 	/**
-	 * Variable représentant l'état de l'unitée (détruite 0 / pas détruite 1)
+	 * Indique une collision
 	 */
-	private boolean etat;
-	
-	// FIXME regrouper les 2 informations dans un type Position (à écrire)
+	public static final int COLLISION = -3;
 	/**
-	 * emplacement sur l'axe x de l'unitée
-	 */
-	public int coord_x;
-	/**
-	 * emplacement sur l'axe y de l'unitée
-	 */
-	public int coord_y;
-	
-	/**
-	 * True si le vaisseau tir False sinon
-	 */
-	public boolean tir;
-	
-	// FIXME définir les valeurs possibles de type_ship par des constantes
-	/**
-	 * Représente le type de vaisseau
-	 */
-	public int type_ship;
-	
-	
-	// FIXME écrire un commentaire correct
-	/**
-	 * Initialise un vaisseau de type Joueur
+	 * Initialise un vaisseau de type Joueur (type 1, situé au centre de la zone de jeux, etat = vivant)
 	 */
 	public Ship()
 	{
-		this.etat = true;
-		this.coord_x = MAX/2;
-		this.coord_y = MAX/5;
+		this.etat = 1;
+		Position position = new Position(4,2);
+		this.position = position;
+		this.position.x = 4;
+		this.position.y = 2;
 		this.tir = false;	
 		this.type_ship = 1;
 	}
@@ -90,14 +88,14 @@ public class Ship
 	 */
 	public Ship(int x, int y,Zone terrain)
 	{
-		
-		//FIXME gérer les cas d'erreur
-		this.etat = true;
-		this.coord_x = x;
-		this.coord_y = y;
+		this.etat = 1;
+		Position position = new Position(4,2);
+		this.position = position;
+		this.position.x = x;
+		this.position.y = y;
 		this.tir = false;
 		this.type_ship = 2;
-		terrain.zone[this.coord_x][this.coord_y] = this.type_ship;
+		terrain.modification(this.position.x,this.position.y,this.type_ship);
 	}
 	
 	/**
@@ -107,7 +105,7 @@ public class Ship
 	 * @param terrain Zone de jeux
 	 * @return <tt>OUT</tt> si le mouvement effectué fait sortir l'unitée ou <tt>IN</tt> sinon
 	 */
-	public int deplacement(int x , int y,Zone terrain)
+	/*public int deplacement(int x , int y,Zone terrain)
 	{
 		// Sorti de l'écran en x
 		if ((this.coord_x == MAX && x > 0)||(this.coord_x == MIN && x < 0))
@@ -221,14 +219,14 @@ public class Ship
 				}	
 			}
 		}
-	}
+	}*/
 	
 	/**
 	 * fonction permettant de détruire l'unitée
 	 */
 	public void detruire()
 	{
-		this.etat = false;
+		this.etat = -1;
 	}
 	/*public void tir()
 	{

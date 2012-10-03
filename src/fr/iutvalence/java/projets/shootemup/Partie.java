@@ -15,132 +15,109 @@ public class Partie
 	 * Valeur indiquant que le joueur est en vie
 	 */
 	public static final int VIVANT = 1;
-	
-	// FIXME Ces constantes, qui ont un lien avec la valeur des cases du tableau de Zone, doivent être définies dans Zone
 	/**
-	 * Case sans vaisseau
+	 * Vaisseau joueur
 	 */
-	public final static int VIDE = 0;
-	/**
-	 * Case avec un vaisseau ennemi
-	 */
-	public final static int VAISSEAU = 1;
-	/**
-	 * Case avec le vaisseau joueur
-	 */
-	public final static int ENNEMI = 2;
-	
-	
+	public Ship joueur;
 	/**
 	 * Représente le score du joueur
 	 */
 	public int score;
-	
-	// FIXME écrire un commentaire correct (i.e. ne pas mentionner le mot tableau)
 	/**
-	 * Tableaux à deux dimensions représentant la zone de jeux
+	 * variable de type zone initialiser lors de la creation d'une partie
 	 */
 	public Zone zone;
 	
 	/**
 	 * Représente le nombre de vie du joueur
 	 */
-	// FIXME si un joueur a plusieurs vies, il faudrait changer le nom de l'attribut
-	public int vie;
-	
+	public int vies;
+	/**
+	 * Liste des ships créer
+	 */
+	public Ship[] liste;
 	/**
 	 * Pseudo du joueur
 	 */
 	public String pseudo;
-	
-	
-	//FIXME écrire un commentaire correct
 	/**
-	 * Initialise une partie
+	 * Initialisation d'une partie met le score à 0, le nombre de vies à 3, crée un vaisseau joueur et la zone de jeux.
 	 * @param pseudo du joueur souhaiter
 	 */
 	public Partie(String pseudo)
 	{
 		this.score = 0;
-		
-		// FIXME si 3 est une valeur par défaut, il faudrait la définri sous forme de constante
-		this.vie = 3;
+		this.vies = 3;
 		this.pseudo = pseudo;		
 		Ship joueur = new Ship(); 
-		Zone zone = new Zone();
+		this.joueur=joueur;
+		Zone zone = new Zone(20);
 		this.zone = zone;
-		zone.zone[joueur.coord_x][joueur.coord_y] = joueur.type_ship;
+		zone.modification(joueur.position.x,joueur.position.y,joueur.type_ship);
+		this.liste = new Ship[100];
 	}
-	
-	//FIXME écrire un commentaire correct
-	//FIXME les noms des méthodes commencent par une minuscule et chaque mot suivant est écrit en débutant apr une majuscule
-	// FIXME est ce qu'il ne serait pas plus simple de renvoyer un booléen indiquant si le joueur est encore en vie ?
 	/**
-	 * Fonction permettant d'enlever une vie
+	 * Fonction permettant d'enlever une vie et retourne l'état du joueur(1 en vie / -1 mort)
 	 * @param joueur vaisseau du joueur
 	 * @return renvois <tt>VIVANT</tt> s'il reste des vie à l'utilisateur sinon <tt>MORT</tt> et détruit le vaisseaux du joueur
 	 */
-	public int Vie_moins(Ship joueur)
+	public int vieMoins()
 	{
-		if (this.vie != 0)
+		if (this.vies != 0)
 		{
-			this.vie = this.vie -1;
-			if (this.vie == 0)
-			{				
-				joueur.detruire();
-				return MORT;
-			}
-			else
+			this.vies = this.vies -1;
+			if (this.vies == 0)
 			{
-			return VIVANT;
+				this.joueur.detruire();
 			}
 		}
-		else
-		{
-			joueur.detruire();
-			return MORT;
-		}
+		return this.joueur.etat;
+
 	}
-	
-	//FIXME les noms des méthodes commencent par une minuscule et chaque mot suivant est écrit en débutant apr une majuscule
 	/**
 	 * Ajout de points
 	 * @param points Nombre de points à ajouter
 	 */
-	public void Ajout_points()
+	public void ajoutPoints()
 	{
 		this.score = this.score + 100;
 	}
 	
 	/**
+	 * permet d'effectuer une pause
+	 * @param delai nombre de milliseconde à attendre
+	 */
+	public void pause(long delai)  
+	{
+		long t=System.currentTimeMillis();
+		while( (System.currentTimeMillis()-t)<delai)
+		{
+			
+		}
+	}
+	/**
 	 * Débuter une partie  
 	 */
-	//FIXME plutôt que de passer la zone en paramètre de la méthode il serait plus logique de la passer en paramètre du constructeur
-	public void start(Zone terrain) 
-	{
-		// FIXME comment être sûr que (50, 60) se trouve dans les limites de la zone ?
-		Ship ennemi = new Ship(50,60,terrain);
-		
-		// FIXME il vaut mieux définir une méthode "modifierPositionVaisseau", sans passer le dernier paramètre
-		terrain.modification(50,60,2);
-		while (this.vie != 2)
+	public void start()   
+	{	
+		int i = 0;
+		while (this.vies != 0)
 		{	
-			int i = 0;
-			// FIXME quel est le sens de la valeur 99 ?
-			// FIXME, remplacer par un appel à toString sur l'objet Zone 
-			while (i < 99)
+			if (i == 0)
 			{
-			  int j = 0;
-			  while(j < 99)
-			  {
-			    System.out.print(terrain.zone[i][j]);
-			    j++;
-			  }
-			  System.out.print("\n");
-			  i++;
+				this.zone.modification(0,(int)( Math.random()*( (this.zone.taille-1) + 1 ) ) + 0,2);
+				i = 1;
 			}
-			ennemi.deplacement(0,-10, terrain);
-			
+			else
+				i =0;
+			System.out.println(this.zone);
+			System.out.println(); 
+		    int x = this.zone.scroll();
+		    if (x ==-1)
+			{
+				this.vieMoins();
+			}
+			pause(250);
 		}
 	}
 	

@@ -1,9 +1,8 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME écrire un commentaire correct, préciser le repère
 /**
  * @author Deguitre & Pignet
- * Zone de jeux
+ * Gestion de la zone de jeux 
  */
 public class Zone
 {
@@ -11,31 +10,18 @@ public class Zone
 	 * Case sans vaisseau
 	 */
 	public final static int VIDE = 0;
-	
-	//FIXME inutile, gérer les erreurs avec des exceptions
-	/**
-	 * Valeur représentant l'exécution normal de la fonction
-	 */
-	public static final int REUSSITE = 1;
-	
-	/**
-	 * Valeur renvoyée lorsque la case est pleine 
-	 */
-	public static final int PLEIN = -1;
-	
-	
 	/**
 	 * Taille max de la zone de jeux
 	 */
 	public static final int MAX = 100;
-	
-	// FIXME attribut à déclarer en privé
 	/**
 	 * Tableaux à deux dimensions représentant la zone de jeux
 	 */
-	public int[][] zone;
-	
-	//FIXME prévoir un autre constructeur où on peut spécifier la taille de la zone
+	private int[][] zone;
+	/**
+	 * Taille de la zone de jeux
+	 */
+	public int taille;
 	/**
 	 * Création de la zone de jeux et initialise toute les cases à <tt>VIDE</tt>
 	 */
@@ -51,31 +37,29 @@ public class Zone
 		}
 	}
 	/**
+	 * @param choix taille de la zone de jeux
+	 */
+	public Zone(int choix)
+	{
+		this.taille = choix;
+		this.zone = new int[this.taille][this.taille];
+		for(int x = 0; x < this.taille; x++)
+		{
+			for(int y = 0; y < this.taille; y++)
+			{
+				this.zone[x][y] = VIDE;
+			}
+		}
+	}
+	/**
+	 * met la valeur Valeur dans zone[x][y]
 	 * @param x emplacement sur l'axe x
 	 * @param y emplacement sur l'axe y
 	 * @param Valeur Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
-	 * @return <tt>REUSSITE</tt> si la case était vide <tt>PLEIN</tt> sinon
 	 */
-	public int modification(int x,int y, int Valeur)
+	public void modification(int x,int y, int Valeur)
 	{		
-		//FIXME en quoi la modification d'une case de la zone peut ne pas être possible .
-		if (this.zone[x][y] != 0)
-		{
-			if(Valeur != 0)
-			{
-				return PLEIN;
-			}
-			else
-			{
-				this.zone[x][y] = Valeur;
-				return REUSSITE;
-			}
-		}
-		else
-		{
-			this.zone[x][y] = Valeur;
-			return REUSSITE;
-		}
+		this.zone[x][y] = Valeur;	
 	}
 	
 	/**
@@ -87,5 +71,75 @@ public class Zone
 	public int contenu(int x,int y)
 	{
 		return this.zone[x][y];
+	}
+	/**
+	 * Fonction de défilement de la zone de jeux
+	 * @return -1 si collision 1 sinon
+	 */
+	public int scroll()
+	{
+		int collision = 1;
+		int indice_ligne = this.taille-1;
+		int indice_colone = 0;
+		while (indice_ligne > 0)
+		{
+			if (indice_colone == this.taille)
+			{
+				indice_ligne--;
+				indice_colone = 0;
+			}
+			if (this.zone[indice_ligne][indice_colone] != 1)
+			{
+				if (indice_ligne-1 < 0)
+				{
+					this.zone[indice_ligne][indice_colone]=0;
+				}
+				else
+				{					
+					this.zone[indice_ligne][indice_colone]=this.zone[indice_ligne-1][indice_colone];
+					this.zone[indice_ligne-1][indice_colone]=0;
+				}
+			}
+			else
+			{
+				if(this.zone[indice_ligne-1][indice_colone] == 2)
+				{
+					collision = -1;
+				}				
+			}
+			indice_colone = indice_colone+1;
+			
+			
+		}
+		return collision;
+		
+	}
+	public String toString()
+	{
+		String result="";
+		// ...
+		for (int i = 0; i < this.taille; i++) 
+	    { 
+		  for (int j = 0; j < this.taille; j++) 
+		  { 
+			  switch(this.zone[i][j])
+		        {
+		            case 0:
+		            	result = result + " ";
+		            break;
+		            case 2:
+		                result = result + "|";
+		            break;
+		            case 1:
+		            	result = result + "A";
+		            break;
+		            default: result = result + "?";
+		        }
+
+		  }
+		  result = result + "\r\n";
+		}
+		result+="-------------------------";
+		return result;
 	}
 }

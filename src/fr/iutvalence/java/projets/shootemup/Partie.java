@@ -51,7 +51,7 @@ public class Partie
 		this.pseudo = pseudo;		
 		Ship joueur = new Ship(); 
 		this.joueur=joueur;
-		Zone zone = new Zone(20);
+		Zone zone = new Zone(8);
 		this.zone = zone;
 		zone.modification(joueur.position.x,joueur.position.y,joueur.type_ship);
 		this.liste = new Ship[100];
@@ -100,23 +100,25 @@ public class Partie
 	 */
 	public void start()   
 	{	
+		Affichage affichage = new Affichage(this.zone);
 		int i = 0;
 		while (this.vies != 0)
 		{	
 			if (i == 0)
 			{
-				this.zone.modification(0,(int)( Math.random()*( (this.zone.taille-1) + 1 ) ) + 0,2);
+				this.zone.modification(1,(int)( Math.random()*( (this.zone.taille-1) + 1 ) ) + 0,2);
 				i = 1;
 			}
 			else
 				i =0;
-			System.out.println(this.zone);
-			System.out.println(); 
+			// Déplacement => gestion collision
+			// Scroll => gestion collision
 		    int x = this.zone.scroll();
 		    if (x ==-1)
 			{
 				this.vieMoins();
 			}
+		    affichage.afficher();
 			pause(250);
 		}
 	}

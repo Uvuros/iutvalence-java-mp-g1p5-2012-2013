@@ -16,7 +16,7 @@ public class Position
 	public int y;
 	
 	/**
-	 * Initialise la posuition <0,0>
+	 * Initialise la position <0,0>
 	 */
 	public Position()
 	{
@@ -24,7 +24,7 @@ public class Position
 		this.y = 0;
 	}
 	/**
-	 * Initialise la posuition <x,y>
+	 * Initialise la position <x,y>
 	 * @param x position en x voulue
 	 * @param y position en y voulue
 	 */

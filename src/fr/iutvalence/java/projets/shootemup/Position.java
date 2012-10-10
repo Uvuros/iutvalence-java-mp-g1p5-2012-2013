@@ -9,11 +9,11 @@ public class Position
 	/**
 	 * position sur l'axe x
 	 */
-	public int x;
+	private int x;
 	/**
 	 * position sur l'axe y
 	 */
-	public int y;
+	private int y;
 	
 	/**
 	 * Initialise la position <0,0>
@@ -33,4 +33,28 @@ public class Position
 		this.x = x;
 		this.y = y;
 	}
+	/**
+	 * @param x translation en x voulue
+	 * @param y translation en y voulue
+	 */
+	public void translate(int x, int y)
+	{
+		this.x = this.x + x;
+		this.y = this.y + y;
+	}
+	/**
+	 * @return position x
+	 */
+	public int getX()
+	{
+		return this.x;
+	}
+	/**
+	 * @return position y 
+	 */
+	public int getY()
+	{
+		return this.y;
+	}
+	
 }

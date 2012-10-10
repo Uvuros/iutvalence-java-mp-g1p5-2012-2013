@@ -23,12 +23,11 @@ public class Ship
 	/**
 	 * Position du vaisseau 
 	 */
-	public Position position;	
+	private Position position;	
 	/**
 	 * True si le vaisseau tir False sinon
 	 */
 	public boolean tir;
-	
 	/**
 	 * valeur du vaisseau joueur
 	 */
@@ -91,13 +90,22 @@ public class Ship
 		this.etat = 1;
 		Position position = new Position(4,2);
 		this.position = position;
-		this.position.x = x;
-		this.position.y = y;
+		this.position.translate(x,y);
 		this.tir = false;
 		this.type_ship = 2;
 		terrain.modification(this.position.x,this.position.y,this.type_ship);
 	}
 	
+	public Position getPosition()
+	{
+		return position;
+	}
+	
+	public void translate(int x,int y)
+	{
+		this.position.translate(x,y)
+	}
+
 	/**
 	 * Modifie les coordonnées x et y de l'unité ainsi que la zone de jeux
 	 * @param x mouvement sur l'axe x

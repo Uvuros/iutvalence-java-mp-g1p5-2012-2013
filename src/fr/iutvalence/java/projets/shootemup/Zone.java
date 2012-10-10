@@ -35,6 +35,7 @@ public class Zone
 				this.zone[x][y] = VIDE;
 			}
 		}
+		this.taille = MAX;
 	}
 	/**
 	 * @param choix taille de la zone de jeux

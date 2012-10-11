@@ -53,7 +53,7 @@ public class Partie
 		this.shipJoueur=joueur;
 		Zone zone = new Zone(8);
 		this.zone = zone;
-		zone.modification(joueur.position.x,joueur.position.y,joueur.type_ship);
+		zone.modification(joueur.getPosition().getX(),joueur.getPosition().getY(),joueur.type_ship);
 		//this.liste = new Ship[100];
 	}
 	/**
@@ -95,13 +95,46 @@ public class Partie
 			
 		}
 	}
+	/**
+	 * déplace le ship joueur
+	 * @param move représente la direction dans laquel veut aller le joueur
+	 */
 	private void deplacement(int move)
 	{
 		// test position max puis collision enfin deplacement
-		int posX = this.shipJoueur.position.x;
-		int posY = this.shipJoueur.position.y;
-		int tailleMaxZone = this.zone.taille;
-		if ((posX > 0) && (posX < tailleMaxZone))
+		int deplacement;
+		switch(move)
+        {
+            case 0:
+            	deplacement = 0;
+            break;
+            case 1:
+                deplacement = -1;
+            break;
+            case 2:
+            	deplacement = 1;
+            break;
+            default: deplacement = 0;
+        }
+		int posX = this.shipJoueur.getPosition().getX();
+		int posY = this.shipJoueur.getPosition().getY();
+		if ((posX+deplacement > 0) && (posX+deplacement < this.zone.taille))
+		{
+			if((this.zone.contenu(posX+deplacement,posY)) == 2)
+			{
+				this.zone.modification(posX,posY,0);
+				this.zone.modification(posX+deplacement,posY,1);
+				this.vieMoins();
+				this.shipJoueur.translate(deplacement,0);
+			}
+			else
+			{
+				this.zone.modification(posX,posY,0);
+				this.zone.modification(posX+deplacement,posY,1);
+				this.shipJoueur.translate(deplacement,0);
+			}
+				
+		}
 	}
 	/**
 	 * Débuter une partie  
@@ -116,19 +149,16 @@ public class Partie
 		{	
 			if (i == 0)
 			{
-				this.zone.modification(1,(int)( Math.random()*( (this.zone.taille-1) + 1 ) ) + 0,2);
+				this.zone.modification((int)( Math.random()*( (this.zone.taille-1) + 1 ) ) + 0,0,2);
 				i = 1;
 			}
 			else
-				i =0;
-			// Déplacement => gestion collision
-			deplacement= joueur.getDeplacement();
-			int collision = this.joueur.deplacement(deplacement);
-			if (collision == -1)
 			{
-				this.vieMoins();
+				i =0;
 			}
-			
+			// Déplacement => gestion collision
+			deplacement = joueur.getDeplacement();	
+			deplacement(deplacement);
 			// Scroll => gestion collision
 		    int x = this.zone.scroll();
 		    if (x ==-1)

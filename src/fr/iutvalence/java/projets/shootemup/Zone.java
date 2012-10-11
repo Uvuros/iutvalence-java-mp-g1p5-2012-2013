@@ -60,7 +60,7 @@ public class Zone
 	 */
 	public void modification(int x,int y, int Valeur)
 	{		
-		this.zone[x][y] = Valeur;	
+		this.zone[y][x] = Valeur;	
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Zone
 	 */
 	public int contenu(int x,int y)
 	{
-		return this.zone[x][y];
+		return this.zone[y][x];
 	}
 	/**
 	 * Fonction de défilement de la zone de jeux
@@ -96,9 +96,15 @@ public class Zone
 					this.zone[indice_ligne][indice_colone]=0;
 				}
 				else
-				{					
-					this.zone[indice_ligne][indice_colone]=this.zone[indice_ligne-1][indice_colone];
-					this.zone[indice_ligne-1][indice_colone]=0;
+				{	if(this.zone[indice_ligne-1][indice_colone] != 1)		
+					{
+						this.zone[indice_ligne][indice_colone]=this.zone[indice_ligne-1][indice_colone];
+						this.zone[indice_ligne-1][indice_colone]=0;
+					}
+					else
+					{
+						this.zone[indice_ligne][indice_colone]=0;
+					}
 				}
 			}
 			else
@@ -119,11 +125,11 @@ public class Zone
 	{
 		String result="";
 		// ...
-		for (int i = 0; i < this.taille; i++) 
+		for (int x = 0; x < this.taille; x++) 
 	    { 
-		  for (int j = 0; j < this.taille; j++) 
+		  for (int y = 0; y < this.taille; y++) 
 		  { 
-			  switch(this.zone[i][j])
+			  switch(this.zone[x][y])
 		        {
 		            case 0:
 		            	result = result + " ";

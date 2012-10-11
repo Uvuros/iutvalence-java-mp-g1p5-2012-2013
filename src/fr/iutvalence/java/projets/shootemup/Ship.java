@@ -70,10 +70,8 @@ public class Ship
 	public Ship()
 	{
 		this.etat = 1;
-		Position position = new Position(4,2);
+		Position position = new Position(4,7);
 		this.position = position;
-		this.position.x = 4;
-		this.position.y = 2;
 		this.tir = false;	
 		this.type_ship = 1;
 	}
@@ -88,22 +86,30 @@ public class Ship
 	public Ship(int x, int y,Zone terrain)
 	{
 		this.etat = 1;
-		Position position = new Position(4,2);
+		Position position = new Position();
 		this.position = position;
 		this.position.translate(x,y);
 		this.tir = false;
 		this.type_ship = 2;
-		terrain.modification(this.position.x,this.position.y,this.type_ship);
+		terrain.modification(this.position.getX(),this.position.getY(),this.type_ship);
 	}
 	
+	/**
+	 * @return la position du vaisseau
+	 */
 	public Position getPosition()
 	{
-		return position;
+		return this.position;
 	}
 	
+	/**
+	 * permet de changer de position
+	 * @param x translation en x à effectuer
+	 * @param y trnaslation en y à effectuer
+	 */
 	public void translate(int x,int y)
 	{
-		this.position.translate(x,y)
+		this.position.translate(x,y);
 	}
 
 	/**

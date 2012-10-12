@@ -33,7 +33,7 @@ public class Partie
 	 */
 	public int vies;
 	/*/**
-	 * Liste des ships créer
+	 * Liste des ships créer		A utiliser quand nous utiliserons des objets ship ennemi
 	 */
 	//public Ship[] liste;
 	/**
@@ -101,10 +101,9 @@ public class Partie
 	 */
 	private void deplacement(int move)
 	{
-		// test position max puis collision enfin deplacement
 		int deplacement;
-		switch(move)
-        {
+		switch(move)			// Uniquement deux posssibilité de mouvements pour l'instant 
+        {						// Deplacement en x de 1 ou -1
             case 0:
             	deplacement = 0;
             break;
@@ -118,17 +117,17 @@ public class Partie
         }
 		int posX = this.shipJoueur.getPosition().getX();
 		int posY = this.shipJoueur.getPosition().getY();
-		if ((posX+deplacement > 0) && (posX+deplacement < this.zone.taille))
-		{
+		if ((posX+deplacement > 0) && (posX+deplacement < this.zone.taille)) 
+		{				// si le déplacement est dans la zone de jeux le le faire sinon ne rien faire															
 			if((this.zone.contenu(posX+deplacement,posY)) == 2)
-			{
+			{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
 				this.zone.modification(posX,posY,0);
 				this.zone.modification(posX+deplacement,posY,1);
 				this.vieMoins();
 				this.shipJoueur.translate(deplacement,0);
 			}
 			else
-			{
+			{			// sinon déplacement
 				this.zone.modification(posX,posY,0);
 				this.zone.modification(posX+deplacement,posY,1);
 				this.shipJoueur.translate(deplacement,0);
@@ -165,6 +164,7 @@ public class Partie
 			{
 				this.vieMoins();
 			}
+		    // Affichage
 		    affichage.afficher();
 			pause(250);
 		}

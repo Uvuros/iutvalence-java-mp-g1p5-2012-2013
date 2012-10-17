@@ -14,9 +14,9 @@ public class Affichage
 	public Zone zone;
 	
 	
-	// FICME corriger le commentaire (ne pas décrire l'implémentation
+	// FIXME (FIXED) corriger le commentaire (ne pas décrire l'implémentation 
 	/**
-	 * initialisation de l'affichage, place zone dans this.zone
+	 * initialisation de l'affichage
 	 * @param zone à afficher
 	 */
 	public Affichage(Zone zone)

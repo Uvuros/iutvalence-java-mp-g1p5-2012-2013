@@ -8,6 +8,14 @@ package fr.iutvalence.java.projets.shootemup;
 public class Zone
 {
 	/**
+	 * Booleén renvoyé lorsqu'il n'y as pas de collision
+	 */
+	public final static boolean NONCOLISION = false;
+	/**
+	 * Booleén renvoyé lors d'une collision
+	 */
+	public final static boolean COLISION = true;
+	/**
 	 * Case sans vaisseau
 	 */
 	public final static int VIDE = 0;
@@ -16,22 +24,32 @@ public class Zone
 	 * Taille max de la zone de jeux
 	 */
 	public static final int MAX = 100;
-	
-	// FIXME détailler le commentaire (contenu des cases)
 	/**
-	 * Tableaux à deux dimensions représentant la zone de jeux
+	 * valeur du vaisseau joueur
+	 */
+	// FIXME (FIXED) si c'est une constante, respecter les conventions d'écriture 
+	public static final int JOUEUR = 1;
+
+	/**
+	 * valeur des vaisseaux de ennemis
+	 */
+	// FIXME (FIXED) si c'est une constante, respecter les conventions d'écriture 
+	public static final int ENNEMI = 2;
+	// FIXME (FIXED)détailler le commentaire (contenu des cases)
+	/**
+	 * Tableaux à deux dimensions représentant la zone de jeux (contenu des case = [VIDE,ENNEMi,JOUEUR]
 	 */
 	private int[][] zone;
 	
 	/**
 	 * Taille de la zone de jeux
 	 */
-	// FIXME déclarer en private
-	public int taille;
+	// FIXME (FIXED) déclarer en private
+	private int taille;
 	
-	// FIXME détailler le commentaire (préciser l'état de la zone)
+	// FIXME (FIXED) détailler le commentaire (préciser l'état de la zone)
 	/**
-	 * Création de la zone de jeux et initialise toute les cases à <tt>VIDE</tt>
+	 * Création de la zone de jeux de taille <tt>MAX</tt>, initialisation de toute les cases à <tt>VIDE</tt>
 	 */
 	public Zone()
 	{
@@ -46,14 +64,15 @@ public class Zone
 		this.taille = MAX;
 	}
 	
-	// FIXME compléter le commentaire
+	// FIXME (FIXED) compléter le commentaire
 	/**
-	 * @param choix taille de la zone de jeux
+	 * Création de la zone de jeux et initialise toute les cases à <tt>VIDE</tt
+	 * @param taille taille de la zone de jeux
 	 */
-	// FIXME renommer le paramètre
-	public Zone(int choix)
+	// FIXME (FIXED) renommer le paramètre
+	public Zone(int taille)
 	{
-		this.taille = choix;
+		this.taille = taille;
 		this.zone = new int[this.taille][this.taille];
 		for(int x = 0; x < this.taille; x++)
 		{
@@ -65,37 +84,47 @@ public class Zone
 	}
 	
 	/**
+	 * Fonction qui permet d'obtenir la taille de la zone de jeux
+	 * @return renvois la taille de la zone de jeux
+	 */
+	public int getTaille()
+	{
+		return this.taille;
+	}
+	/**
 	 * met la valeur Valeur dans zone[x][y]
 	 * @param x emplacement sur l'axe x
 	 * @param y emplacement sur l'axe y
-	 * @param Valeur Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
+	 * @param valeur Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
 	 */
-	// FIXME respecter les conventions d'écriture (paramètre)
-	public void modification(int x,int y, int Valeur)
+	// FIXME (FIXED) respecter les conventions d'écriture (paramètre)
+	public void modification(int x,int y, int valeur)
 	{		
-		this.zone[y][x] = Valeur;	
+		this.zone[y][x] = valeur;	
 	}
 	
-	// FIXME corriger le commentaire (rien n'est affiché)
-	// FIXME gérer les erreurs avec des exceptions
+	// FIXME (FIXED) corriger le commentaire (rien n'est affiché)
+	// FIXME (FIXED) gérer les erreurs avec des exceptions
 	/**
-	 * Affiche le contenu d'une case de la zone de jeux
+	 * Renvoie le contenu d'une case de la zone de jeux
 	 * @param x emplacement sur l'axe x
 	 * @param y emplacement sur l'axe y
 	 * @return contenu de la case ciblée
+	 * @throws HorsZoneException lorsque x ou y est en dehors de la zone de jeux
 	 */
-	public int contenu(int x,int y)
+	public int contenu(int x,int y) throws HorsZoneException
 	{
+		if ((x > this.taille)||(x<0)||(y > this.taille)||(y<0)) throw new HorsZoneException();	
 		return this.zone[y][x];
 	}
 	/**
 	 * Fonction de défilement de la zone de jeu
 	 * @return -1 si collision 1 sinon
 	 */
-	// FIXME retourner un booléen ?
-	public int scroll()
+	// FIXME (FIXED) retourner un booléen ? 
+	public boolean scroll()
 	{							// Scroll depuis le bas vers le haut de la zone
-		int collision = 1;
+		boolean collision = NONCOLISION;
 		int indice_ligne = this.taille-1;
 		int indice_colone = 0;
 		while (indice_ligne > 0) // tant qu'on as pas atteint la derniére ligne de la zone de jeux
@@ -127,7 +156,7 @@ public class Zone
 			{
 				if(this.zone[indice_ligne-1][indice_colone] == 2)
 				{				// Si l'élément au dessus du vaisseau est un ennemi => collision
-					collision = -1;
+					collision = COLISION;
 				}				
 			}
 			indice_colone = indice_colone+1;

@@ -8,6 +8,10 @@ package fr.iutvalence.java.projets.shootemup;
 public class Partie
 {
 	/**
+	 * Taille par défaut de la zone de jeux
+	 */
+	public static final int TAILLEZONE = 8;
+	/**
 	 * Valeur représentant la mort du joueur  
 	 */
 	public static final int MORT = -1;
@@ -32,6 +36,10 @@ public class Partie
 	 * Représente le nombre de vie du joueur
 	 */
 	public int vies;
+	/**
+	 * Joueur (control de la partie) soit de type aléatoire soit de type clavier
+	 */
+	private Joueur joueur;
 	/*/**
 	 * Liste des ships créer		A utiliser quand nous utiliserons des objets ship ennemi
 	 */
@@ -41,19 +49,21 @@ public class Partie
 	 */
 	public String pseudo;
 	/**
-	 * Initialisation d'une partie met le score à 0, le nombre de vies à 3, crée un vaisseau joueur et la zone de jeux.
+	 * Initialisation d'une partie met le score à 0, le nombre de vies à 5, crée un vaisseau joueur et la zone de jeux.
 	 * @param pseudo du joueur souhaiter
+	 * @param joueur interface permettant de controler la partie
 	 */
-	public Partie(String pseudo)
+	public Partie(String pseudo,Joueur joueur)
 	{
+		this.joueur = joueur;
 		this.score = 0;
-		this.vies = 3;
+		this.vies = 5;
 		this.pseudo = pseudo;		
-		Ship joueur = new Ship(); 
-		this.shipJoueur=joueur;
-		Zone zone = new Zone(8);
+		Ship player = new Ship(TAILLEZONE); 
+		this.shipJoueur=player;
+		Zone zone = new Zone(TAILLEZONE);
 		this.zone = zone;
-		zone.modification(joueur.getPosition().getX(),joueur.getPosition().getY(),joueur.type_ship);
+		zone.modification(player.getPosition().getX(),player.getPosition().getY(),player.typeShip);
 		//this.liste = new Ship[100];
 	}
 	/**
@@ -61,7 +71,7 @@ public class Partie
 	 * @param shipJoueur vaisseau du joueur
 	 * @return renvois <tt>VIVANT</tt> s'il reste des vie à l'utilisateur sinon <tt>MORT</tt> et détruit le vaisseaux du joueur
 	 */
-	public int vieMoins()
+	public boolean vieMoins()
 	{
 		if (this.vies != 0)
 		{
@@ -117,20 +127,28 @@ public class Partie
         }
 		int posX = this.shipJoueur.getPosition().getX();
 		int posY = this.shipJoueur.getPosition().getY();
-		if ((posX+deplacement > 0) && (posX+deplacement < this.zone.taille)) 
+		if ((posX+deplacement > 0) && (posX+deplacement < this.zone.getTaille())) 
 		{				// si le déplacement est dans la zone de jeux le le faire sinon ne rien faire															
-			if((this.zone.contenu(posX+deplacement,posY)) == 2)
-			{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
-				this.zone.modification(posX,posY,0);
-				this.zone.modification(posX+deplacement,posY,1);
-				this.vieMoins();
-				this.shipJoueur.translate(deplacement,0);
+			try
+			{
+				if((this.zone.contenu(posX+deplacement,posY)) == Zone.ENNEMI)
+				{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
+					this.zone.modification(posX,posY,Zone.VIDE);
+					this.zone.modification(posX+deplacement,posY,Zone.JOUEUR);
+					this.vieMoins();
+					this.shipJoueur.translate(deplacement,0);
+				}
+				else
+				{			// sinon déplacement
+					this.zone.modification(posX,posY,Zone.VIDE);
+					this.zone.modification(posX+deplacement,posY,Zone.JOUEUR);
+					this.shipJoueur.translate(deplacement,0);
+				}
 			}
-			else
-			{			// sinon déplacement
-				this.zone.modification(posX,posY,0);
-				this.zone.modification(posX+deplacement,posY,1);
-				this.shipJoueur.translate(deplacement,0);
+			catch (HorsZoneException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 				
 		}
@@ -141,26 +159,25 @@ public class Partie
 	public void start()   
 	{	
 		Affichage affichage = new Affichage(this.zone);
-		Joueur joueur = new Joueur();
 		int deplacement;
 		int i = 0;
 		while (this.vies != 0)
 		{	
 			if (i == 0)
 			{
-				this.zone.modification((int)( Math.random()*( (this.zone.taille-1) + 1 ) ) + 0,0,2);
+				this.zone.modification((int)( Math.random()*( (this.zone.getTaille()-1) + 1 ) ) + 0,0,Zone.ENNEMI);
 				i = 1;
 			}
 			else
 			{
 				i =0;
 			}
-			// Déplacement => gestion collision
-			deplacement = joueur.getDeplacement();	
+			// Déplacement => gestion collision	
+			deplacement = this.joueur.getDeplacement();
 			deplacement(deplacement);
 			// Scroll => gestion collision
-		    int x = this.zone.scroll();
-		    if (x ==-1)
+		    boolean colision = this.zone.scroll();
+		    if (colision == true)
 			{
 				this.vieMoins();
 			}

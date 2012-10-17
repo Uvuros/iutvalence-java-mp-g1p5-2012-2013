@@ -1,36 +1,17 @@
 package fr.iutvalence.java.projets.shootemup;
 
-
-// FIXME détailler le commentaire
 /**
- * Classe de controle
+ * Interface Joueur
  * @author deguitre & Pignet
- * 
+ *
  */
-public class Joueur
+public interface Joueur
 {
-	// FIXME détailler le commentaire (constantes ?)
+
 	/**
-	 * entier représentant le déplacement du joueur
+	 * Renvoie un chiffre aléatoire 
+	 * @return représentation du déplacement du joueur
 	 */
-	public int deplacement;
-	
-	/**
-	 * Initialise Joueur, deplacement = 0 => ne bouge pas
-	 */
-	public Joueur()
-	{
-		this.deplacement = 0;
-	}
-	/**
-	 * Déplacement du joueur
-	 * @return le déplacement
-	 */
-	public int getDeplacement()
-	{
-		int i = (int)(Math.random() *3); 
-		return i;
-	}
-	
-	
+	public int getDeplacement();
+
 }

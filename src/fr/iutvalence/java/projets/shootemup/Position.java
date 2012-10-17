@@ -58,9 +58,27 @@ public class Position
 		return this.y;
 	}
 	
-	// FIXME redéfinir toString
+	// FIXME (FIXED) redéfinir toString
+	public String toString()
+	{
+		String result = "("+this.x+","+this.y+")";
+		return result;	
+	}
 	
-	// FIXME redéfinir equals et hashCode
+	public boolean equals(Object o)
+	{
+		if (o == null) return false;
+		if (o == this) return true;
+		if(!(o instanceof Position)) return false;
+		Position temp = (Position) o;
+		return (this.x == temp.x)&&(this.y == temp.y);
+	}
 	
-	// FIXME écrire (dans une autre classe)  une application de test basique
+	public int hashCode()
+	{
+		return this.x+this.y;
+	}
+	// FIXME (FIXED) redéfinir equals et hashCode
+	
+	// FIXME (FIXED) écrire (dans une autre classe)  une application de test basique
 }

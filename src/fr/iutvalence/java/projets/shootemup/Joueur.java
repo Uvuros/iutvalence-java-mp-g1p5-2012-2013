@@ -1,11 +1,15 @@
 package fr.iutvalence.java.projets.shootemup;
 
+
+// FIXME détailler le commentaire
 /**
- * @author deguitre & Pignet
  * Classe de controle
+ * @author deguitre & Pignet
+ * 
  */
 public class Joueur
 {
+	// FIXME détailler le commentaire (constantes ?)
 	/**
 	 * entier représentant le déplacement du joueur
 	 */

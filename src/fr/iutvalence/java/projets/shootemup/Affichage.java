@@ -2,17 +2,19 @@ package fr.iutvalence.java.projets.shootemup;
 
 
 /**
+ * Affichage de la zone de jeu
  * @author deguitre & Pignet
- * Affichage de la zone de jeux
+ * 
  */
 public class Affichage
 {
 	/**
-	 * Zone de jeux à afficher
+	 * Zone de jeu à afficher
 	 */
 	public Zone zone;
 	
 	
+	// FICME corriger le commentaire (ne pas décrire l'implémentation
 	/**
 	 * initialisation de l'affichage, place zone dans this.zone
 	 * @param zone à afficher

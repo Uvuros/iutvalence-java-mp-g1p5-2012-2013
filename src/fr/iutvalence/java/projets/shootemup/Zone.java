@@ -1,8 +1,9 @@
 package fr.iutvalence.java.projets.shootemup;
 
 /**
+ * Gestion de la zone de jeu
  * @author Deguitre & Pignet
- * Gestion de la zone de jeux 
+ *  
  */
 public class Zone
 {
@@ -10,18 +11,25 @@ public class Zone
 	 * Case sans vaisseau
 	 */
 	public final static int VIDE = 0;
+	
 	/**
 	 * Taille max de la zone de jeux
 	 */
 	public static final int MAX = 100;
+	
+	// FIXME détailler le commentaire (contenu des cases)
 	/**
 	 * Tableaux à deux dimensions représentant la zone de jeux
 	 */
 	private int[][] zone;
+	
 	/**
 	 * Taille de la zone de jeux
 	 */
+	// FIXME déclarer en private
 	public int taille;
+	
+	// FIXME détailler le commentaire (préciser l'état de la zone)
 	/**
 	 * Création de la zone de jeux et initialise toute les cases à <tt>VIDE</tt>
 	 */
@@ -37,9 +45,12 @@ public class Zone
 		}
 		this.taille = MAX;
 	}
+	
+	// FIXME compléter le commentaire
 	/**
 	 * @param choix taille de la zone de jeux
 	 */
+	// FIXME renommer le paramètre
 	public Zone(int choix)
 	{
 		this.taille = choix;
@@ -52,17 +63,21 @@ public class Zone
 			}
 		}
 	}
+	
 	/**
 	 * met la valeur Valeur dans zone[x][y]
 	 * @param x emplacement sur l'axe x
 	 * @param y emplacement sur l'axe y
 	 * @param Valeur Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
 	 */
+	// FIXME respecter les conventions d'écriture (paramètre)
 	public void modification(int x,int y, int Valeur)
 	{		
 		this.zone[y][x] = Valeur;	
 	}
 	
+	// FIXME corriger le commentaire (rien n'est affiché)
+	// FIXME gérer les erreurs avec des exceptions
 	/**
 	 * Affiche le contenu d'une case de la zone de jeux
 	 * @param x emplacement sur l'axe x
@@ -74,9 +89,10 @@ public class Zone
 		return this.zone[y][x];
 	}
 	/**
-	 * Fonction de défilement de la zone de jeux
+	 * Fonction de défilement de la zone de jeu
 	 * @return -1 si collision 1 sinon
 	 */
+	// FIXME retourner un booléen ?
 	public int scroll()
 	{							// Scroll depuis le bas vers le haut de la zone
 		int collision = 1;
@@ -121,6 +137,11 @@ public class Zone
 		return collision;
 		
 	}
+	
+	
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString()
 	{
 		String result="";

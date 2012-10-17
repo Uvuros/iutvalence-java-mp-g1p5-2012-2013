@@ -28,51 +28,73 @@ public class Ship
 	 * True si le vaisseau tir False sinon
 	 */
 	public boolean tir;
+	
 	/**
 	 * valeur du vaisseau joueur
 	 */
+	// FIXME si c'est une constante, respecter les conventions d'écriture
 	public static final int joueur = 1;
+
 	/**
 	 * valeur des vaisseaux de ennemis
 	 */
+	// FIXME si c'est une constante, respecter les conventions d'écriture
 	public static final int ennemi = 2;
+	
 	/**
 	 * Représente le type de vaisseau
 	 */
+	// FIXME respecter les conventions d'écriture
 	public int type_ship;
+	
 	/**
 	 * Etat du vaisseau, 1 pour VIVANT, -1 pour MORT
 	 */
+	// FIXME booléen ?
 	public int etat;
+	
+	// FIXME regrouper les définitions des constantes avant celles des attributs
 	/**
 	 * valeur des coordonnées x ou y max
 	 */
 	public static final int MAX = 100;
+	
 	/**
 	 * valeur des coordonnées x ou y min
 	 */
 	public static final int MIN = 100;
+
 	/**
 	 * Valeur retournée si les coordonnées sont à l'intérieur de la zone de jeux
 	 */
 	public static final int IN = 1;
+	
 	/**
 	 * Valeur retournée si les coordonnées sont à l'extérieur de la zone de jeux
 	 */
+	
 	public static final int OUT = -1;
+	
 	/**
 	 * Indique une collision
 	 */
 	public static final int COLLISION = -3;
+	
 	/**
 	 * Initialise un vaisseau de type Joueur (type 1, situé au centre de la zone de jeux, etat = vivant)
 	 */
 	public Ship()
 	{
+		// FIXME utiliser les constantes
 		this.etat = 1;
+		
+		// FIXME définir la valeur par défaut via une constante
+		// FIXME regrouper les 2 lignes en une seule
 		Position position = new Position(4,7);
 		this.position = position;
+		
 		this.tir = false;	
+		// FIXME utiliser les constantes
 		this.type_ship = 1;
 	}
 	
@@ -85,12 +107,19 @@ public class Ship
 	 */
 	public Ship(int x, int y,Zone terrain)
 	{
+		// FIXME utiliser les constantes
 		this.etat = 1;
+		
+		// FIXME définir la valeur par défaut via une constante
+		// FIXME regrouper les 3 lignes en une seule
 		Position position = new Position();
 		this.position = position;
 		this.position.translate(x,y);
 		this.tir = false;
+		
+		// FIXME utiliser les constantes
 		this.type_ship = 2;
+		
 		terrain.modification(this.position.getX(),this.position.getY(),this.type_ship);
 	}
 	
@@ -240,6 +269,7 @@ public class Ship
 	 */
 	public void detruire()
 	{
+		// FIXME utiliser les constantes
 		this.etat = -1;
 	}
 	/*public void tir()

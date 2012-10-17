@@ -1,6 +1,7 @@
+// FIXME déplacer dans un autre paquetage
 package fr.iutvalence.java.projets.shootemup;
 
-
+// FIXME détailler le commentaire
 /**
  * classe de test 
  * @author Deguitre & Pignet
@@ -8,7 +9,7 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class TestZone
 {
-
+	// FIXME compléter le commentaire
 	/**
 	 * @param args
 	 */

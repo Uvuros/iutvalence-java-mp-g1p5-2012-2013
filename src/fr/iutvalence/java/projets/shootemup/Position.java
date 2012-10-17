@@ -1,8 +1,9 @@
 package fr.iutvalence.java.projets.shootemup;
 
 /**
+ * Définit un doublet position
  * @author deguitre & Pignet
- * Défini un doublet position
+ * 
  */
 public class Position
 {
@@ -57,4 +58,9 @@ public class Position
 		return this.y;
 	}
 	
+	// FIXME redéfinir toString
+	
+	// FIXME redéfinir equals et hashCode
+	
+	// FIXME écrire (dans une autre classe)  une application de test basique
 }

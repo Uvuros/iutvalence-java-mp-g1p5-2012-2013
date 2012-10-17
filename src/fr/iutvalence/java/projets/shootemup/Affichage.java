@@ -9,26 +9,35 @@ package fr.iutvalence.java.projets.shootemup;
 public class Affichage
 {
 	/**
-	 * Zone de jeu à afficher
-	 */
-	public Zone zone;
-	
-	
-	// FIXME (FIXED) corriger le commentaire (ne pas décrire l'implémentation 
-	/**
-	 * initialisation de l'affichage
-	 * @param zone à afficher
-	 */
-	public Affichage(Zone zone)
-	{
-		this.zone = zone;
-	}
-	/**
 	 * Affichage de la zone
+	 * @param zone 
 	 */
-	public void afficher()
+	public void afficher(int[][] zone)
 	{
-		System.out.println(this.zone);
+		String result="";
+		// ...
+		for (int x = 0; x < zone.length; x++) 
+	    { 
+		  for (int y = 0; y < zone[x].length; y++) 
+		  { 
+			  switch(zone[x][y])
+		        {
+		            case 0:
+		            	result = result + " ";
+		            break;
+		            case 2:		// ennemi représentés par |
+		                result = result + "|";
+		            break;
+		            case 1:		// Vaisseau joueur représenté par A
+		            	result = result + "A";
+		            break;
+		            default: result = result + "?";
+		        }
+
+		  }
+		  result = result + "\r\n";
+		}
+		System.out.println(result);
 		System.out.println(); 
 	}
 }

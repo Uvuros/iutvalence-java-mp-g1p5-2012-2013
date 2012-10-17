@@ -158,7 +158,7 @@ public class Partie
 	 */
 	public void start()   
 	{	
-		Affichage affichage = new Affichage(this.zone);
+		Affichage affichage = new Affichage();
 		int deplacement;
 		int i = 0;
 		while (this.vies != 0)
@@ -182,7 +182,7 @@ public class Partie
 				this.vieMoins();
 			}
 		    // Affichage
-		    affichage.afficher();
+		    affichage.afficher(this.zone.getZone());
 			pause(250);
 		}
 	}

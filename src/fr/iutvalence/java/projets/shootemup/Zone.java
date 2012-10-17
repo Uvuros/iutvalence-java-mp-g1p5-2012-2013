@@ -167,7 +167,14 @@ public class Zone
 		
 	}
 	
-	
+	/**
+	 * renvois le tableaux à deux dimenssions 
+	 * @return tableaux à deux dimenssions
+	 */
+	public int[][] getZone()
+	{
+		return this.zone;
+	}
 	/**
 	 * @see java.lang.Object#toString()
 	 */

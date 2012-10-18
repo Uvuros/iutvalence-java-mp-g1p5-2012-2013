@@ -1,6 +1,7 @@
 // FIXME (FIXED) déplacer dans un autre paquetage
 package fr.iutvalence.java.projets.shootemup.tests;
 
+import fr.iutvalence.java.projets.shootemup.AffichageAscii;
 import fr.iutvalence.java.projets.shootemup.Partie;
 import fr.iutvalence.java.projets.shootemup.JoueurAlea;
 
@@ -20,8 +21,9 @@ public class TestZone
 	 */
 	public static void main(String[] args)
 	{
+		AffichageAscii affichage = new AffichageAscii();
 		JoueurAlea joueur = new JoueurAlea();
-		Partie p = new Partie("Uvuros",joueur);
+		Partie p = new Partie("Uvuros",joueur,affichage);
 		p.start();
 	}
 

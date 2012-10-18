@@ -40,6 +40,10 @@ public class Partie
 	 * Joueur (control de la partie) soit de type aléatoire soit de type clavier
 	 */
 	private Joueur joueur;
+	/**
+	 * Affichage (visualisation de la partie) 
+	 */
+	private Affichage affichage;
 	/*/**
 	 * Liste des ships créer		A utiliser quand nous utiliserons des objets ship ennemi
 	 */
@@ -52,9 +56,11 @@ public class Partie
 	 * Initialisation d'une partie met le score à 0, le nombre de vies à 5, crée un vaisseau joueur et la zone de jeux.
 	 * @param pseudo du joueur souhaiter
 	 * @param joueur interface permettant de controler la partie
+	 * @param affichage interface permettant l'affichage de la partie
 	 */
-	public Partie(String pseudo,Joueur joueur)
+	public Partie(String pseudo,Joueur joueur,Affichage affichage)
 	{
+		this.affichage = affichage;
 		this.joueur = joueur;
 		this.score = 0;
 		this.vies = 5;
@@ -158,7 +164,6 @@ public class Partie
 	 */
 	public void start()   
 	{	
-		Affichage affichage = new Affichage();
 		int deplacement;
 		int i = 0;
 		while (this.vies != 0)
@@ -182,7 +187,7 @@ public class Partie
 				this.vieMoins();
 			}
 		    // Affichage
-		    affichage.afficher(this.zone.getZone());
+		    this.affichage.afficher(this.zone.getZone());
 			pause(250);
 		}
 	}

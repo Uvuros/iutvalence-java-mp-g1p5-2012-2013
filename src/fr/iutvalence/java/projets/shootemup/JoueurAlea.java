@@ -17,7 +17,7 @@ public class JoueurAlea implements Joueur
 	
 	public Direction getDeplacement()
 	{
-		int alea = (int) (Math.random() * 3);
+		int alea = (int) (Math.random() * 5);
 		switch (alea)
 		{
 			case 0: return Direction.FIXE;

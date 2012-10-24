@@ -10,7 +10,7 @@ import fr.iutvalence.java.projets.shootemup.JoueurAlea;
  * @author Deguitre & Pignet
  * 
  */
-public class TestZone
+public class SimulationPartieASCIIArtAleatoire
 {
 	/**
 	 * Permet de tester les classes Partie Ship Affichage Zone Position et Joueur, Doit afficher la zone de jeu

@@ -1,18 +1,18 @@
 package fr.iutvalence.java.projets.shootemup;
 
 /**
- * Interface Joueur
+ * interface d'affichage, affiche un tableaux à deux dimenssions 
  * 
  * @author deguitre & Pignet
  * 
  */
 public interface Affichage
 {
-	// FIXME compléter le commentaire (param)
+	// FIXME (FIXED) compléter le commentaire (param)
 	/**
 	 * Affichage de la zone
 	 * 
-	 * @param zone
+	 * @param zone que l'ont veut afficher
 	 */
-	public void afficher(int[][] zone);
+	public void afficher(ContenuZone[][] zone);
 }

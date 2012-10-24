@@ -12,22 +12,8 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class Ship
 {
-	// FIXME regrouper les 3 contantes suivantes dans un type énuméré
-	/**
-	 * Valeur retournée si les coordonnées sont à l'intérieur de la zone de jeux
-	 */
-	public static final int IN = 1;
-
-	/**
-	 * Valeur retournée si les coordonnées sont à l'extérieur de la zone de jeux
-	 */
-
-	public static final int OUT = -1;
-
-	/**
-	 * Indique une collision
-	 */
-	public static final int COLLISION = -3;
+	// FIXME (FIXED suppression des 3 constante inutilisées)regrouper les 3 contantes suivantes dans un type énuméré
+	
 	
 	/**
 	 * valeur des coordonnées x ou y max
@@ -67,23 +53,23 @@ public class Ship
 	private Position position;
 	
 	
-	// FIXME définir en private
+	// FIXME (FIXED) définir en private
 	/**
 	 * True si le vaisseau tir False sinon
 	 */
-	public boolean tir;
+	private boolean tir;
 
 	/**
 	 * Représente le type de vaisseau
 	 */
-	// FIXME définir en private
-	public int typeShip;
+	// FIXME (FIXED) définir en private
+	private ContenuZone typeShip;
 
 	/**
 	 * Etat du vaisseau, 1 pour VIVANT, -1 pour MORT
 	 */
-	// FIXME définir en private
-	public boolean etat;
+	// FIXME (FIXED) définir en private
+	private boolean etat;
 
 	/**
 	 * Initialise un vaisseau de type Joueur (type 1, situé au centre de la zone de jeux, etat = vivant)
@@ -97,7 +83,7 @@ public class Ship
 		this.etat = VIVANT;
 		this.position = new Position(maxzone / 2, maxzone - 1);
 		this.tir = false;
-		this.typeShip = JOUEUR;
+		this.typeShip = ContenuZone.JOUEUR;
 	}
 
 	/**
@@ -115,14 +101,15 @@ public class Ship
 		this.etat = VIVANT;
 		this.position = new Position(x, y);
 		this.tir = false;
-		this.typeShip = ENNEMI;
+		this.typeShip = ContenuZone.ENNEMI;
 
 		terrain.modification(this.position.getX(), this.position.getY(), this.typeShip);
 	}
 
-	// FIXME compléter le commentaire
+	// FIXME (FIXED) compléter le commentaire
 	/**
-	 * @return la position du vaisseau
+	 * Permet d'obtenir la position du vaisseau
+	 * @return la Position du vaisseau
 	 */
 	public Position getPosition()
 	{
@@ -190,6 +177,22 @@ public class Ship
 	public void detruire()
 	{
 		this.etat = MORT;
+	}
+	/**
+	 * Permet d'obtenir le type du vaisseau
+	 * @return le type du vaisseau
+	 */
+	public ContenuZone getType()
+	{
+		return this.typeShip;
+	}
+	/**
+	 * Permet d'otenir l'etat du vaisseau 
+	 * @return l'etat du vaisseau
+	 */
+	public boolean getEtat()
+	{
+		return this.etat;
 	}
 	/*
 	 * public void tir() { if (this.tir == true) { this.tir = false; } else { this.tir = true; } }

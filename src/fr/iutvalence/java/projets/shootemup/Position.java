@@ -77,8 +77,9 @@ public class Position
 		return result;
 	}
 
-	// FIXME compléter le commentaire (dire en quoi 2 objets sont équivalents)
+	// FIXME (FIXED) compléter le commentaire (dire en quoi 2 objets sont équivalents)
 	/**
+	 * Deux objets sont équivalents si il sont du meme type et si il on les meme valeur de x et de y
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object o)

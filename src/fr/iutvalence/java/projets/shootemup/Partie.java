@@ -33,9 +33,9 @@ public class Partie
 	 */
 	public int score;
 
-	// FIXME corriger le commentaire (à discuter)
+	// FIXME (FIXED)corriger le commentaire (à discuter)
 	/**
-	 * variable de type zone initialiser lors de la creation d'une partie
+	 * zone de jeux sur laquelle évoluent les vaisseaux
 	 */
 	public Zone zone;
 
@@ -44,9 +44,9 @@ public class Partie
 	 */
 	public int vies;
 	
-	// FIXME corriger le commentaire
+	// FIXME (FIXED ?)corriger le commentaire
 	/**
-	 * Joueur (controle de la partie) soit de type aléatoire soit de type clavier
+	 * Joueur représente les interaction entre le joueur et la partie 
 	 */
 	private Joueur joueur;
 	
@@ -86,15 +86,12 @@ public class Partie
 		this.shipJoueur = player;
 		Zone zone = new Zone(TAILLEZONE);
 		this.zone = zone;
-		zone.modification(player.getPosition().getX(), player.getPosition().getY(), player.typeShip);
+		zone.modification(player.getPosition().getX(), player.getPosition().getY(), player.getType());
 		// this.liste = new Ship[100];
 	}
 
 	/**
-	 * Fonction permettant d'enlever une vie et retourne l'état du joueur(1 en vie / -1 mort)
-	 * 
-	 * @param shipJoueur
-	 *            vaisseau du joueur
+	 * Fonction permettant d'enlever une vie et retourne l'état du joueur(VIVANT ou MORT)
 	 * @return renvois <tt>VIVANT</tt> s'il reste des vie à l'utilisateur sinon <tt>MORT</tt> et détruit le vaisseaux du
 	 *         joueur
 	 */
@@ -108,14 +105,12 @@ public class Partie
 				this.shipJoueur.detruire();
 			}
 		}
-		return this.shipJoueur.etat;
+		return this.shipJoueur.getEtat();
 
 	}
 
 	/**
 	 * Ajout de points
-	 * 
-	 * @param points
 	 *            Nombre de points à ajouter
 	 */
 	public void ajoutPoints()
@@ -144,19 +139,19 @@ public class Partie
 	 * @param move
 	 *            représente la direction dans laquel veut aller le joueur
 	 */
-	private void deplacement(int move)
+	private void deplacement(Direction move)
 	{
 		int deplacement;
 		switch (move)
 		// Uniquement deux posssibilité de mouvements pour l'instant
 		{						// Deplacement en x de 1 ou -1
-			case 0:
+			case FIXE:
 				deplacement = 0;
 				break;
-			case 1:
+			case GAUCHE:
 				deplacement = -1;
 				break;
-			case 2:
+			case DROITE:
 				deplacement = 1;
 				break;
 			default:
@@ -168,17 +163,17 @@ public class Partie
 		{				// si le déplacement est dans la zone de jeux le le faire sinon ne rien faire
 			try
 			{
-				if ((this.zone.contenu(posX + deplacement, posY)) == Zone.ENNEMI)
+				if ((this.zone.contenu(posX + deplacement, posY)) == ContenuZone.ENNEMI)
 				{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
-					this.zone.modification(posX, posY, Zone.VIDE);
-					this.zone.modification(posX + deplacement, posY, Zone.JOUEUR);
+					this.zone.modification(posX, posY, ContenuZone.VIDE);
+					this.zone.modification(posX + deplacement, posY, ContenuZone.JOUEUR);
 					this.vieMoins();
 					this.shipJoueur.translate(deplacement, 0);
 				}
 				else
 				{			// sinon déplacement
-					this.zone.modification(posX, posY, Zone.VIDE);
-					this.zone.modification(posX + deplacement, posY, Zone.JOUEUR);
+					this.zone.modification(posX, posY, ContenuZone.VIDE);
+					this.zone.modification(posX + deplacement, posY, ContenuZone.JOUEUR);
 					this.shipJoueur.translate(deplacement, 0);
 				}
 			}
@@ -196,13 +191,13 @@ public class Partie
 	 */
 	public void start()
 	{
-		int deplacement;
+		Direction deplacement;
 		int i = 0;
 		while (this.vies != 0)
 		{
 			if (i == 0)
 			{
-				this.zone.modification((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0, Zone.ENNEMI);
+				this.zone.modification((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0, ContenuZone.ENNEMI);
 				i = 1;
 			}
 			else

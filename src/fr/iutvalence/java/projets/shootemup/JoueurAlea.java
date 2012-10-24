@@ -1,8 +1,8 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME (not fixed) détailler le commentaire
+// FIXME (FIXED) détailler le commentaire
 /**
- * Classe de controle interface entre l'utilisateur et la partie
+ * Classe de controle, génére des choix aléatoire 
  * 
  * @author deguitre & Pignet
  * 
@@ -15,9 +15,19 @@ public class JoueurAlea implements Joueur
 	 * @Override
 	 */
 	
-	public int getDeplacement()
+	public Direction getDeplacement()
 	{
-		return (int) (Math.random() * 3);
+		int alea = (int) (Math.random() * 3);
+		switch (alea)
+		{
+			case 0: return Direction.FIXE;
+			
+			case 1: return Direction.GAUCHE;
+
+			case 2 : return Direction.DROITE;
+			
+			default: return Direction.FIXE;
+		}
 	}
 
 }

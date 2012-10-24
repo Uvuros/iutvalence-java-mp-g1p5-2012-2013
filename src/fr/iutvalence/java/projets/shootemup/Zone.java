@@ -15,7 +15,7 @@ public class Zone
 	/**
 	 * Booleén renvoyé lors d'une collision
 	 */
-	public final static boolean COLISION = true;
+	public final static boolean COLLISION = true;
 
 	/**
 	 * Taille max de la zone de jeux
@@ -23,45 +23,31 @@ public class Zone
 	public static final int MAX = 100;
 
 	
-	// FIXME redéfinir les constantes spécifiant le contenu d'une case via une énumération (ContenuZone)
-	/**
-	 * Case sans vaisseau
-	 */
-	public final static int VIDE = 0;
-
-	/**
-	 * valeur du vaisseau joueur
-	 */
-	public static final int JOUEUR = 1;
-
-	/**
-	 * valeur des vaisseaux de ennemis
-	 */
-	public static final int ENNEMI = 2;
+	
 	
 	/**
 	 * Tableaux à deux dimensions représentant la zone de jeux (contenu des case = [VIDE,ENNEMi,JOUEUR]
 	 */
-	// FIXME (une fois l'énumération définie) utiliser le type énuméré
-	private int[][] zone;
+	// FIXME (FIXED)(une fois l'énumération définie) utiliser le type énuméré
+	private ContenuZone[][] zone;
 
 	/**
 	 * Taille de la zone de jeux
 	 */
-	// FIXME la taille change t'elle une fois la zone créée ?
-	private int taille;
+	// FIXME (FIXED) la taille change t'elle une fois la zone créée ? non
+	private final int taille;
 
 	/**
 	 * Création de la zone de jeux de taille <tt>MAX</tt>, initialisation de toute les cases à <tt>VIDE</tt>
 	 */
 	public Zone()
 	{
-		this.zone = new int[MAX][MAX];
+		this.zone = new ContenuZone[MAX][MAX];
 		for (int x = 0; x < MAX; x++)
 		{
 			for (int y = 0; y < MAX; y++)
 			{
-				this.zone[x][y] = VIDE;
+				this.zone[x][y] = ContenuZone.VIDE;
 			}
 		}
 		this.taille = MAX;
@@ -76,12 +62,12 @@ public class Zone
 	public Zone(int taille)
 	{
 		this.taille = taille;
-		this.zone = new int[this.taille][this.taille];
+		this.zone = new ContenuZone[this.taille][this.taille];
 		for (int x = 0; x < this.taille; x++)
 		{
 			for (int y = 0; y < this.taille; y++)
 			{
-				this.zone[x][y] = VIDE;
+				this.zone[x][y] = ContenuZone.VIDE;
 			}
 		}
 	}
@@ -106,7 +92,7 @@ public class Zone
 	 * @param valeur
 	 *            Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
 	 */
-	public void modification(int x, int y, int valeur)
+	public void modification(int x, int y, ContenuZone valeur)
 	{
 		this.zone[y][x] = valeur;
 	}
@@ -122,7 +108,7 @@ public class Zone
 	 * @throws HorsZoneException
 	 *             lorsque x ou y est en dehors de la zone de jeux
 	 */
-	public int contenu(int x, int y) throws HorsZoneException
+	public ContenuZone contenu(int x, int y) throws HorsZoneException
 	{
 		if ((x > this.taille) || (x < 0) || (y > this.taille) || (y < 0))
 			throw new HorsZoneException();
@@ -130,11 +116,11 @@ public class Zone
 	}
 
 	
-	// FIXME corriger le commentaire (@return)
+	// FIXME (FIXED) corriger le commentaire (@return)
 	/**
 	 * Fonction de défilement de la zone de jeu
 	 * 
-	 * @return -1 si collision 1 sinon
+	 * @return <tt>COLLISION</tt> si il y as eu une collision lors du scroll sinon <tt>NON_COLLISION</tt>
 	 */
 	public boolean scroll()
 	{							// Scroll depuis le bas vers le haut de la zone
@@ -148,30 +134,30 @@ public class Zone
 				indice_ligne--;
 				indice_colone = 0;
 			}
-			if (this.zone[indice_ligne][indice_colone] != 1)
+			if (this.zone[indice_ligne][indice_colone] != ContenuZone.JOUEUR)
 			{					// Si l'élément est différent du vaisseau joueur
 				if (indice_ligne - 1 < 0)
 				{				// Si l'on est sur la derniére ligne => créer une nouvelle ligne (ligne vide)
-					this.zone[indice_ligne][indice_colone] = 0;
+					this.zone[indice_ligne][indice_colone] = ContenuZone.VIDE;
 				}
 				else
 				{
-					if (this.zone[indice_ligne - 1][indice_colone] != 1)
+					if (this.zone[indice_ligne - 1][indice_colone] != ContenuZone.JOUEUR)
 					{			// Si l'élément du dessus n'est pas le vaisseau joueur on copie la ligne du dessus
 						this.zone[indice_ligne][indice_colone] = this.zone[indice_ligne - 1][indice_colone];
-						this.zone[indice_ligne - 1][indice_colone] = 0;
+						this.zone[indice_ligne - 1][indice_colone] = ContenuZone.VIDE;
 					}
 					else
 					{			// Sinon on remplace par 0 (le vaisseau joueur n'est pas affecetr par le scroll)
-						this.zone[indice_ligne][indice_colone] = 0;
+						this.zone[indice_ligne][indice_colone] = ContenuZone.VIDE;
 					}
 				}
 			}
 			else
 			{
-				if (this.zone[indice_ligne - 1][indice_colone] == 2)
+				if (this.zone[indice_ligne - 1][indice_colone] == ContenuZone.ENNEMI)
 				{				// Si l'élément au dessus du vaisseau est un ennemi => collision
-					collision = COLISION;
+					collision = COLLISION;
 				}
 			}
 			indice_colone = indice_colone + 1;
@@ -186,13 +172,23 @@ public class Zone
 	 * 
 	 * @return tableaux à deux dimenssions
 	 */
-	public int[][] getZone()
+	public ContenuZone[][] getZone()
 	{
 		return this.zone;
 	}
 
-	// FIXME détailler le commentaire (dire à quoi ressemble la chaine retournée)
+	// FIXME (FIXED) détailler le commentaire (dire à quoi ressemble la chaine retournée)
 	/**
+	 * Affichage de type :
+	 *    |   
+	 *       
+	 *      |
+	 *      
+	 *     |  
+	 *       A
+	 *  ------------    
+	 *  retourne une chaine composé de chaque ligne suivi d'un 
+	 *  retour chariot en commençant par le haut de la zone
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString()
@@ -205,13 +201,13 @@ public class Zone
 			{
 				switch (this.zone[x][y])
 				{
-					case 0:
+					case VIDE:
 						result = result + " ";
 						break;
-					case 2:		// ennemi représentés par |
+					case ENNEMI:		// ennemi représentés par |
 						result = result + "|";
 						break;
-					case 1:		// Vaisseau joueur représenté par A
+					case JOUEUR:		// Vaisseau joueur représenté par A
 						result = result + "A";
 						break;
 					default:

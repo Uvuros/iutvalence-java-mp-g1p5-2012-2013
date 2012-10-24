@@ -1,8 +1,8 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME détailler le commentaire
+// FIXME (FIXED) détailler le commentaire
 /**
- * Affichage de la zone de jeu
+ * Affichage d'un tableau à deux dimenssions en ASCII art
  * 
  * @author deguitre & Pignet
  * 
@@ -10,9 +10,21 @@ package fr.iutvalence.java.projets.shootemup;
 public class AffichageAscii implements Affichage
 {
 	/**
-	 * @see fr.iutvalence.java.projets.shootemup.Affichage#afficher(int[][])
+	 * Chaine représentant l'affichage d'une case vide
 	 */
-	public void afficher(int[][] zone)
+	public static final String VIDE = " ";
+	/**
+	 * Chaine représentant l'affichage d'une case ennemi
+	 */
+	public static final String ENNEMI = "|";
+	/**
+	 * Chaine représentant l'affichage d'une case vaisseau
+	 */
+	public static final String VAISSEAU = "A";
+	/**
+	 * @see fr.iutvalence.java.projets.shootemup.Affichage#afficher(ContenuZone[][])
+	 */
+	public void afficher(ContenuZone[][] zone)
 	{
 		String result = "";
 		// ...
@@ -22,15 +34,15 @@ public class AffichageAscii implements Affichage
 			{
 				switch (zone[x][y])
 				{
-					// FIXME utiliser des constantes
-					case 0:
-						result = result + " ";
+					// FIXME (FIXED) utiliser des constantes
+					case VIDE:
+						result = result + VIDE;
 						break;
-					case 2:		// ennemi représentés par |
-						result = result + "|";
+					case ENNEMI:		// ennemi représentés par |
+						result = result + ENNEMI;
 						break;
-					case 1:		// Vaisseau joueur représenté par A
-						result = result + "A";
+					case JOUEUR:		// Vaisseau joueur représenté par A
+						result = result + VAISSEAU;
 						break;
 					default:
 						result = result + "?";

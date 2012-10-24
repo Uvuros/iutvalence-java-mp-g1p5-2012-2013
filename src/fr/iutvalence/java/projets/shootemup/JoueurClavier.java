@@ -12,8 +12,8 @@ public class JoueurClavier implements Joueur
 	 * @see fr.iutvalence.java.projets.shootemup.Joueur#getDeplacement()
 	 * @Override
 	 */
-	public int getDeplacement()
+	public Direction getDeplacement()
 	{
-		return 0; 
+		return Direction.FIXE; 
 	}
 }

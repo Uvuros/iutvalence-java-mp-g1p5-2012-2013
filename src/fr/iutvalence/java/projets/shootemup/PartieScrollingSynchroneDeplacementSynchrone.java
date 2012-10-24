@@ -6,7 +6,7 @@ package fr.iutvalence.java.projets.shootemup;
  * @author Deguitre & Pignet
  * 
  */
-public class Partie
+public class PartieScrollingSynchroneDeplacementSynchrone
 {
 	/**
 	 * Taille par défaut de la zone de jeux
@@ -75,7 +75,7 @@ public class Partie
 	 * @param affichage
 	 *            interface permettant l'affichage de la partie
 	 */
-	public Partie(String pseudo, Joueur joueur, Affichage affichage)
+	public PartieScrollingSynchroneDeplacementSynchrone(String pseudo, Joueur joueur, Affichage affichage)
 	{
 		this.affichage = affichage;
 		this.joueur = joueur;

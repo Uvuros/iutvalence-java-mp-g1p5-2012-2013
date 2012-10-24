@@ -1,8 +1,9 @@
 package fr.iutvalence.java.projets.shootemup.tests;
 
 import fr.iutvalence.java.projets.shootemup.AffichageAscii;
-import fr.iutvalence.java.projets.shootemup.Partie;
+import fr.iutvalence.java.projets.shootemup.PartieScrollingSynchroneDeplacementSynchrone;
 import fr.iutvalence.java.projets.shootemup.JoueurAlea;
+import fr.iutvalence.java.projets.shootemup.ThreadScroll;
 
 /**
  * classe de test / créer une partie et la démarre
@@ -10,7 +11,7 @@ import fr.iutvalence.java.projets.shootemup.JoueurAlea;
  * @author Deguitre & Pignet
  * 
  */
-public class SimulationPartieASCIIArtAleatoire
+public class SimulationPartieASCIIArtAleatoireScrollingAsynchroneDeplacementSynchrone
 {
 	/**
 	 * Permet de tester les classes Partie Ship Affichage Zone Position et Joueur, Doit afficher la zone de jeu
@@ -23,7 +24,9 @@ public class SimulationPartieASCIIArtAleatoire
 	{
 		AffichageAscii affichage = new AffichageAscii();
 		JoueurAlea joueur = new JoueurAlea();
-		Partie p = new Partie("Uvuros", joueur, affichage);
+		PartieScrollingSynchroneDeplacementSynchrone p = new PartieScrollingSynchroneDeplacementSynchrone("Uvuros", joueur, affichage);
+		ThreadScroll t = new ThreadScroll(p);
+		t.run();
 		p.start();
 	}
 

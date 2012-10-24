@@ -12,22 +12,28 @@ public class Partie
 	 * Taille par défaut de la zone de jeux
 	 */
 	public static final int TAILLEZONE = 8;
+	
 	/**
 	 * Valeur représentant la mort du joueur
 	 */
 	public static final int MORT = -1;
+	
 	/**
 	 * Valeur indiquant que le joueur est en vie
 	 */
 	public static final int VIVANT = 1;
+	
 	/**
 	 * Vaisseau joueur
 	 */
 	public Ship shipJoueur;
+	
 	/**
 	 * Représente le score du joueur
 	 */
 	public int score;
+
+	// FIXME corriger le commentaire (à discuter)
 	/**
 	 * variable de type zone initialiser lors de la creation d'une partie
 	 */
@@ -37,18 +43,23 @@ public class Partie
 	 * Représente le nombre de vie du joueur
 	 */
 	public int vies;
+	
+	// FIXME corriger le commentaire
 	/**
-	 * Joueur (control de la partie) soit de type aléatoire soit de type clavier
+	 * Joueur (controle de la partie) soit de type aléatoire soit de type clavier
 	 */
 	private Joueur joueur;
+	
 	/**
 	 * Affichage (visualisation de la partie)
 	 */
 	private Affichage affichage;
+	
 	/*
 	 * /** Liste des ships créer A utiliser quand nous utiliserons des objets ship ennemi
 	 */
 	// public Ship[] liste;
+	
 	/**
 	 * Pseudo du joueur
 	 */
@@ -58,7 +69,7 @@ public class Partie
 	 * Initialisation d'une partie met le score à 0, le nombre de vies à 5, crée un vaisseau joueur et la zone de jeux.
 	 * 
 	 * @param pseudo
-	 *            du joueur souhaiter
+	 *            du joueur souhaité
 	 * @param joueur
 	 *            interface permettant de controler la partie
 	 * @param affichage

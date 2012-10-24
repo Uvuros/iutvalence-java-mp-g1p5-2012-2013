@@ -1,5 +1,6 @@
 package fr.iutvalence.java.projets.shootemup;
 
+// FIXME détailler le commentaire
 /**
  * Affichage de la zone de jeu
  * 
@@ -9,9 +10,7 @@ package fr.iutvalence.java.projets.shootemup;
 public class AffichageAscii implements Affichage
 {
 	/**
-	 * Affichage de la zone
-	 * 
-	 * @param zone
+	 * @see fr.iutvalence.java.projets.shootemup.Affichage#afficher(int[][])
 	 */
 	public void afficher(int[][] zone)
 	{
@@ -23,6 +22,7 @@ public class AffichageAscii implements Affichage
 			{
 				switch (zone[x][y])
 				{
+					// FIXME utiliser des constantes
 					case 0:
 						result = result + " ";
 						break;

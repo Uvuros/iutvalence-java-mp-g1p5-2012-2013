@@ -11,44 +11,46 @@ public class Zone
 	/**
 	 * Booleén renvoyé lorsqu'il n'y as pas de collision
 	 */
-	public final static boolean NONCOLISION = false;
+	public final static boolean NON_COLLISION = false;
 	/**
 	 * Booleén renvoyé lors d'une collision
 	 */
 	public final static boolean COLISION = true;
+
+	/**
+	 * Taille max de la zone de jeux
+	 */
+	public static final int MAX = 100;
+
+	
+	// FIXME redéfinir les constantes spécifiant le contenu d'une case via une énumération (ContenuZone)
 	/**
 	 * Case sans vaisseau
 	 */
 	public final static int VIDE = 0;
 
 	/**
-	 * Taille max de la zone de jeux
-	 */
-	public static final int MAX = 100;
-	/**
 	 * valeur du vaisseau joueur
 	 */
-	// FIXME (FIXED) si c'est une constante, respecter les conventions d'écriture
 	public static final int JOUEUR = 1;
 
 	/**
 	 * valeur des vaisseaux de ennemis
 	 */
-	// FIXME (FIXED) si c'est une constante, respecter les conventions d'écriture
 	public static final int ENNEMI = 2;
-	// FIXME (FIXED)détailler le commentaire (contenu des cases)
+	
 	/**
 	 * Tableaux à deux dimensions représentant la zone de jeux (contenu des case = [VIDE,ENNEMi,JOUEUR]
 	 */
+	// FIXME (une fois l'énumération définie) utiliser le type énuméré
 	private int[][] zone;
 
 	/**
 	 * Taille de la zone de jeux
 	 */
-	// FIXME (FIXED) déclarer en private
+	// FIXME la taille change t'elle une fois la zone créée ?
 	private int taille;
 
-	// FIXME (FIXED) détailler le commentaire (préciser l'état de la zone)
 	/**
 	 * Création de la zone de jeux de taille <tt>MAX</tt>, initialisation de toute les cases à <tt>VIDE</tt>
 	 */
@@ -65,14 +67,12 @@ public class Zone
 		this.taille = MAX;
 	}
 
-	// FIXME (FIXED) compléter le commentaire
 	/**
 	 * Création de la zone de jeux et initialise toute les cases à <tt>VIDE</tt
 	 * 
 	 * @param taille
 	 *            taille de la zone de jeux
 	 */
-	// FIXME (FIXED) renommer le paramètre
 	public Zone(int taille)
 	{
 		this.taille = taille;
@@ -89,7 +89,7 @@ public class Zone
 	/**
 	 * Fonction qui permet d'obtenir la taille de la zone de jeux
 	 * 
-	 * @return renvois la taille de la zone de jeux
+	 * @return renvoie la taille de la zone de jeux
 	 */
 	public int getTaille()
 	{
@@ -106,14 +106,11 @@ public class Zone
 	 * @param valeur
 	 *            Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
 	 */
-	// FIXME (FIXED) respecter les conventions d'écriture (paramètre)
 	public void modification(int x, int y, int valeur)
 	{
 		this.zone[y][x] = valeur;
 	}
 
-	// FIXME (FIXED) corriger le commentaire (rien n'est affiché)
-	// FIXME (FIXED) gérer les erreurs avec des exceptions
 	/**
 	 * Renvoie le contenu d'une case de la zone de jeux
 	 * 
@@ -132,15 +129,16 @@ public class Zone
 		return this.zone[y][x];
 	}
 
+	
+	// FIXME corriger le commentaire (@return)
 	/**
 	 * Fonction de défilement de la zone de jeu
 	 * 
 	 * @return -1 si collision 1 sinon
 	 */
-	// FIXME (FIXED) retourner un booléen ?
 	public boolean scroll()
 	{							// Scroll depuis le bas vers le haut de la zone
-		boolean collision = NONCOLISION;
+		boolean collision = NON_COLLISION;
 		int indice_ligne = this.taille - 1;
 		int indice_colone = 0;
 		while (indice_ligne > 0) // tant qu'on as pas atteint la derniére ligne de la zone de jeux
@@ -184,7 +182,7 @@ public class Zone
 	}
 
 	/**
-	 * renvois le tableaux à deux dimenssions
+	 * renvoie le tableaux à deux dimenssions
 	 * 
 	 * @return tableaux à deux dimenssions
 	 */
@@ -193,6 +191,7 @@ public class Zone
 		return this.zone;
 	}
 
+	// FIXME détailler le commentaire (dire à quoi ressemble la chaine retournée)
 	/**
 	 * @see java.lang.Object#toString()
 	 */

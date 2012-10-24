@@ -1,6 +1,6 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME (FIXED) détailler le commentaire
+// FIXME (not fixed) détailler le commentaire
 /**
  * Classe de controle interface entre l'utilisateur et la partie
  * 
@@ -9,8 +9,7 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class JoueurAlea implements Joueur
 {
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
 	 * @see fr.iutvalence.java.projets.shootemup.Joueur#getDeplacement()
 	 */

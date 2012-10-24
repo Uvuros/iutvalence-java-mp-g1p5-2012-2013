@@ -68,13 +68,19 @@ public class Position
 		return this.y;
 	}
 
-	// FIXME (FIXED) redéfinir toString
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString()
 	{
 		String result = "(" + this.x + "," + this.y + ")";
 		return result;
 	}
 
+	// FIXME compléter le commentaire (dire en quoi 2 objets sont équivalents)
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object o)
 	{
 		if (o == null)
@@ -87,11 +93,11 @@ public class Position
 		return (this.x == temp.x) && (this.y == temp.y);
 	}
 
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
 	public int hashCode()
 	{
 		return this.x + this.y;
 	}
-	// FIXME (FIXED) redéfinir equals et hashCode
-
-	// FIXME (FIXED) écrire (dans une autre classe) une application de test basique
 }

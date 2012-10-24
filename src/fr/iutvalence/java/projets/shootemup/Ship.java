@@ -12,6 +12,7 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class Ship
 {
+	// FIXME regrouper les 3 contantes suivantes dans un type énuméré
 	/**
 	 * Valeur retournée si les coordonnées sont à l'intérieur de la zone de jeux
 	 */
@@ -27,38 +28,46 @@ public class Ship
 	 * Indique une collision
 	 */
 	public static final int COLLISION = -3;
-	// FIXME (FIXED) regrouper les définitions des constantes avant celles des attributs
+	
 	/**
 	 * valeur des coordonnées x ou y max
 	 */
 	public static final int MAX = 100;
+	
+
 	/**
 	 * valeur du vaisseau joueur
 	 */
-	// FIXME (FIXED) si c'est une constante, respecter les conventions d'écriture
+
 	public static final int JOUEUR = 1;
 
 	/**
 	 * valeur des vaisseaux de ennemis
 	 */
-	// FIXME (FIXED) si c'est une constante, respecter les conventions d'écriture
 	public static final int ENNEMI = 2;
+	
 	/**
 	 * valeur des coordonnées x ou y min
 	 */
 	public static final int MIN = 100;
+	
 	/**
 	 * Valeur représentant la mort du joueur
 	 */
 	public static final boolean MORT = false;
+	
 	/**
 	 * Valeur indiquant que le joueur est en vie
 	 */
 	public static final boolean VIVANT = true;
+	
 	/**
 	 * Position du vaisseau
 	 */
 	private Position position;
+	
+	
+	// FIXME définir en private
 	/**
 	 * True si le vaisseau tir False sinon
 	 */
@@ -67,13 +76,13 @@ public class Ship
 	/**
 	 * Représente le type de vaisseau
 	 */
-	// FIXME (FIXED) respecter les conventions d'écriture
+	// FIXME définir en private
 	public int typeShip;
 
 	/**
 	 * Etat du vaisseau, 1 pour VIVANT, -1 pour MORT
 	 */
-	// FIXME (FIXED) booléen ? oui
+	// FIXME définir en private
 	public boolean etat;
 
 	/**
@@ -84,14 +93,10 @@ public class Ship
 	 */
 	public Ship(int maxzone)
 	{
-		// FIXME (FIXED ?) utiliser les constantes
-		this.etat = VIVANT;
 
-		// FIXME (FIXED) définir la valeur par défaut via une constante
-		// FIXME (FIXED) regrouper les 2 lignes en une seule
+		this.etat = VIVANT;
 		this.position = new Position(maxzone / 2, maxzone - 1);
 		this.tir = false;
-		// FIXME (FIXED) utiliser les constantes
 		this.typeShip = JOUEUR;
 	}
 
@@ -107,20 +112,15 @@ public class Ship
 	 */
 	public Ship(int x, int y, Zone terrain)
 	{
-		// FIXME (FIXED ?) utiliser les constantes
 		this.etat = VIVANT;
-
-		// FIXME (FIXED) définir la valeur par défaut via une constante
-		// FIXME (FIXED) regrouper les 3 lignes en une seule
 		this.position = new Position(x, y);
 		this.tir = false;
-
-		// FIXME (FIXED) utiliser les constantes
 		this.typeShip = ENNEMI;
 
 		terrain.modification(this.position.getX(), this.position.getY(), this.typeShip);
 	}
 
+	// FIXME compléter le commentaire
 	/**
 	 * @return la position du vaisseau
 	 */
@@ -189,7 +189,6 @@ public class Ship
 	 */
 	public void detruire()
 	{
-		// FIXME (FIXED) utiliser les constantes
 		this.etat = MORT;
 	}
 	/*

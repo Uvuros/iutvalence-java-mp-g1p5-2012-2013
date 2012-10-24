@@ -8,7 +8,7 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public interface Affichage
 {
-
+	// FIXME compléter le commentaire (param)
 	/**
 	 * Affichage de la zone
 	 * 

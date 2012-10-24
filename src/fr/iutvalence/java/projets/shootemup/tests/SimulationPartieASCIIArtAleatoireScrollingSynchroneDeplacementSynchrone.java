@@ -3,7 +3,6 @@ package fr.iutvalence.java.projets.shootemup.tests;
 import fr.iutvalence.java.projets.shootemup.AffichageAscii;
 import fr.iutvalence.java.projets.shootemup.PartieScrollingSynchroneDeplacementSynchrone;
 import fr.iutvalence.java.projets.shootemup.JoueurAlea;
-import fr.iutvalence.java.projets.shootemup.ThreadScroll;
 
 /**
  * classe de test / créer une partie et la démarre

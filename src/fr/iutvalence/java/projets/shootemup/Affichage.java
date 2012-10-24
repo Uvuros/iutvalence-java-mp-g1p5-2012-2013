@@ -17,7 +17,7 @@ public interface Affichage
 	public void afficherZone(ContenuZone[][] zone);
 	
 	/**
-	 * @param nbViesRestantes
+	 * @param nbViesRestantes à afficher
 	 */
 	public void notificationNbViesRestantes(int nbViesRestantes);
 	

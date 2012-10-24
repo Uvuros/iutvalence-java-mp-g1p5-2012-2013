@@ -57,7 +57,7 @@ public class Ship
 	/**
 	 * True si le vaisseau tir False sinon
 	 */
-	private boolean tir;
+	//private boolean tir;
 
 	/**
 	 * Représente le type de vaisseau
@@ -82,7 +82,7 @@ public class Ship
 
 		this.etat = VIVANT;
 		this.position = new Position(maxzone / 2, maxzone - 1);
-		this.tir = false;
+		//this.tir = false;
 		this.typeShip = ContenuZone.JOUEUR;
 	}
 
@@ -100,7 +100,7 @@ public class Ship
 	{
 		this.etat = VIVANT;
 		this.position = new Position(x, y);
-		this.tir = false;
+		//this.tir = false;
 		this.typeShip = ContenuZone.ENNEMI;
 
 		terrain.modification(this.position.getX(), this.position.getY(), this.typeShip);

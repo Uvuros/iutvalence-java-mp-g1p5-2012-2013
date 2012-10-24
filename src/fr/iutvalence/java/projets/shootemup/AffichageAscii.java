@@ -23,9 +23,15 @@ public class AffichageAscii implements Affichage
 //	 */
 //	public static final String VAISSEAU = "A";
 	
+	/**
+	 * Vies restantes à afficher à la place de Contenu.JOUEUR
+	 */
 	private int nbViesRestantes;
 	
 	
+	/**
+	 * Initialise l'affichage
+	 */
 	public AffichageAscii()
 	{
 		this.nbViesRestantes = 0;
@@ -52,7 +58,7 @@ public class AffichageAscii implements Affichage
 						result = result + ENNEMI;
 						break;
 					case JOUEUR:		// Vaisseau joueur représenté par A
-						result = result + nbViesRestantes;
+						result = result + this.nbViesRestantes;
 						break;
 					default:
 						result = result + "?";

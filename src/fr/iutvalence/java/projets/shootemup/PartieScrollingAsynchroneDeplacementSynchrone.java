@@ -6,7 +6,7 @@ package fr.iutvalence.java.projets.shootemup;
  * @author Deguitre & Pignet
  * 
  */
-public class PartieScrollingAsynchroneDeplacementSynchrone
+public class PartieScrollingAsynchroneDeplacementSynchrone implements Scrollable
 {
 	/**
 	 * Taille par défaut de la zone de jeux
@@ -214,5 +214,16 @@ public class PartieScrollingAsynchroneDeplacementSynchrone
 			pause(250);
 		}
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see fr.iutvalence.java.projets.shootemup.Scrollable#scroll()
+	 */
+	@Override
+	public boolean scroll()
+	{
+		if (this.zone.scroll())
+			return this.vieMoins();
+		return true;
+	}
+	
 }

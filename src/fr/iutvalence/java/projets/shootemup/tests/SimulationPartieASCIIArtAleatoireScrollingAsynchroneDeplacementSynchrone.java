@@ -1,6 +1,7 @@
 package fr.iutvalence.java.projets.shootemup.tests;
 
 import fr.iutvalence.java.projets.shootemup.AffichageAscii;
+import fr.iutvalence.java.projets.shootemup.PartieScrollingAsynchroneDeplacementSynchrone;
 import fr.iutvalence.java.projets.shootemup.PartieScrollingSynchroneDeplacementSynchrone;
 import fr.iutvalence.java.projets.shootemup.JoueurAlea;
 import fr.iutvalence.java.projets.shootemup.ThreadScroll;
@@ -24,9 +25,9 @@ public class SimulationPartieASCIIArtAleatoireScrollingAsynchroneDeplacementSync
 	{
 		AffichageAscii affichage = new AffichageAscii();
 		JoueurAlea joueur = new JoueurAlea();
-		PartieScrollingSynchroneDeplacementSynchrone p = new PartieScrollingSynchroneDeplacementSynchrone("Uvuros", joueur, affichage);
+		PartieScrollingAsynchroneDeplacementSynchrone p = new PartieScrollingAsynchroneDeplacementSynchrone("Uvuros", joueur, affichage);
 		ThreadScroll t = new ThreadScroll(p);
-		t.run();
+		t.start();
 		p.start();
 	}
 

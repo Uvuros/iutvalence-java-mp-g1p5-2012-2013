@@ -2,10 +2,11 @@ package fr.iutvalence.java.projets.shootemup;
 
 public class ThreadScroll extends Thread
 {
-	private PartieScrollingSynchroneDeplacementSynchrone partie;
-	public ThreadScroll(PartieScrollingSynchroneDeplacementSynchrone p)
+	private Scrollable toScroll;
+	
+	public ThreadScroll(Scrollable p)
 	{
-		this.partie = p;
+		this.toScroll = p;
 	}
 	public void pause(long delai)
 	{
@@ -17,12 +18,9 @@ public class ThreadScroll extends Thread
 	}
 	public void run()
 	{
-		
-		boolean colision = this.partie.zone.scroll();
-		if (colision == true)
+		while (this.toScroll.scroll())
 		{
-			this.partie.vieMoins();
+			pause(250);
 		}
-		pause(250);
 	}
 }

@@ -88,6 +88,7 @@ public class Partie
 		this.zone = zone;
 		zone.modification(player.getPosition().getX(), player.getPosition().getY(), player.getType());
 		// this.liste = new Ship[100];
+		this.affichage.notificationNbViesRestantes(this.vies);
 	}
 
 	/**
@@ -100,6 +101,7 @@ public class Partie
 		if (this.vies != 0)
 		{
 			this.vies = this.vies - 1;
+			this.affichage.notificationNbViesRestantes(this.vies);
 			if (this.vies == 0)
 			{
 				this.shipJoueur.detruire();
@@ -214,7 +216,7 @@ public class Partie
 				this.vieMoins();
 			}
 			// Affichage
-			this.affichage.afficher(this.zone.getZone());
+			this.affichage.afficherZone(this.zone.getZone());
 			pause(250);
 		}
 	}

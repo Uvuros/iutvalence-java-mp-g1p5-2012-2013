@@ -13,5 +13,11 @@ public interface Scrollable
 	 * @return resultat du scroll
 	 */
 	public boolean scroll();
+	/**
+	 * deplacement ( à compléter)
+	 * @param direction direction 
+	 * @return true si vivant mort sinon ( a faire)
+	 */
+	public boolean mouvement(Direction direction);
 
 }

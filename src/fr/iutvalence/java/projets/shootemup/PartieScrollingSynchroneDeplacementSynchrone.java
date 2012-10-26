@@ -6,7 +6,7 @@ package fr.iutvalence.java.projets.shootemup;
  * @author Deguitre & Pignet
  * 
  */
-public class PartieScrollingSynchroneDeplacementSynchrone
+public class PartieScrollingSynchroneDeplacementSynchrone 
 {
 	/**
 	 * Taille par défaut de la zone de jeux

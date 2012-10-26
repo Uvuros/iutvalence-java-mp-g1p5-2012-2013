@@ -222,8 +222,18 @@ public class PartieScrollingAsynchroneDeplacementSynchrone implements Scrollable
 	public boolean scroll()
 	{
 		if (this.zone.scroll())
+		{
+			this.affichage.afficherZone(this.zone.getZone());
 			return this.vieMoins();
+		}
+		this.affichage.afficherZone(this.zone.getZone());
 		return true;
+	}
+
+	@Override
+	public boolean mouvement(Direction move)
+	{
+		return false;
 	}
 	
 }

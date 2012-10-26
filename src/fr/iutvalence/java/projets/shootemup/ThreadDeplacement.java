@@ -5,7 +5,7 @@ package fr.iutvalence.java.projets.shootemup;
  * @author deguitre & Pignet
  *
  */
-public class ThreadScroll extends Thread
+public class ThreadDeplacement extends Thread
 {
 	/**
 	 * objet sur lequel scroller
@@ -16,7 +16,7 @@ public class ThreadScroll extends Thread
 	 * initialise un nouveau thread qui permettra de scroller sur l'objet placé en paramétre
 	 * @param p objet sur lequel scroller
 	 */
-	public ThreadScroll(Scrollable p)
+	public ThreadDeplacement(Scrollable p)
 	{
 		this.toScroll = p;
 	}
@@ -34,10 +34,26 @@ public class ThreadScroll extends Thread
 	}
 	public void run()
 	{
-		while (this.toScroll.scroll())
+		Direction mouvement = Direction.FIXE;
+		while (this.toScroll.mouvement(mouvement))
 		{
-			// Ajouter affichage
-			pause(250);
+				int alea = (int) (Math.random() * 5);
+				switch (alea)
+				{
+				case 0:  mouvement = Direction.FIXE;break;
+				
+				case 1: mouvement = Direction.GAUCHE;break;
+
+				case 2 : mouvement = Direction.DROITE;break;
+				
+				case 3 : mouvement = Direction.HAUT;break;
+				
+				case 4 : mouvement = Direction.BAS;break;
+				
+				default: mouvement = Direction.FIXE;break;
+				}
+				
+			pause(150);
 		}
 	}
 }

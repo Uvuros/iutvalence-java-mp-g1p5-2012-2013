@@ -134,7 +134,20 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone implements Scrollabl
 
 			}
 		}
-
+		/**
+		 * @return l'état du vaisseau sous forme de booléen 
+		 */
+		public boolean enVie()
+		{
+			if (this.vies != 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 		/**
 		 * déplace le ship joueur
 		 * @param move représente la direction dans laquel veut aller le joueur         
@@ -169,30 +182,66 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone implements Scrollabl
 			}
 			int posX = this.shipJoueur.getPosition().getX();
 			int posY = this.shipJoueur.getPosition().getY();
-			if ((posX + x > 0) && (posX + x < this.zone.getTaille()))
-			{				// si le déplacement est dans la zone de jeux le le faire sinon ne rien faire
-				try
-				{
-					if ((this.zone.contenu(posX + x, posY)) == ContenuZone.ENNEMI)
-					{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
-						this.zone.modification(posX, posY, ContenuZone.VIDE);
-						this.zone.modification(posX + x, posY, ContenuZone.JOUEUR);
-						this.shipJoueur.translate(x, 0);
-						return false; // utiliser une constante
+			if (x != 0)
+			{
+				if ((posX + x > 0) && (posX + x < this.zone.getTaille()))
+				{				// si le déplacement est dans la zone de jeux le le faire sinon ne rien faire
+					try
+					{
+						if ((this.zone.contenu(posX + x, posY)) == ContenuZone.ENNEMI)
+						{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
+							this.zone.modification(posX, posY, ContenuZone.VIDE);
+							this.zone.modification(posX + x, posY, ContenuZone.JOUEUR);
+							this.shipJoueur.translate(x, 0);
+							return false; // utiliser une constante
+						}
+						else
+						{			// sinon déplacement
+							this.zone.modification(posX, posY, ContenuZone.VIDE);
+							this.zone.modification(posX + x, posY, ContenuZone.JOUEUR);
+							this.shipJoueur.translate(x, 0);
+						}
 					}
-					else
-					{			// sinon déplacement
-						this.zone.modification(posX, posY, ContenuZone.VIDE);
-						this.zone.modification(posX + x, posY, ContenuZone.JOUEUR);
-						this.shipJoueur.translate(x, 0);
+					catch (HorsZoneException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+	
 				}
-				catch (HorsZoneException e)
+				return true;
+			}
+			else
+			{
+				if(y != 0)
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					if ((posY + y > 0) && (posY + y < this.zone.getTaille()))
+					{				// si le déplacement est dans la zone de jeux le le faire sinon ne rien faire
+						try
+						{
+							if ((this.zone.contenu(posX, posY + y)) == ContenuZone.ENNEMI)
+							{			// si l'élément à la position futur est un ennemi => perdre une vie puis déplacement
+								this.zone.modification(posX, posY, ContenuZone.VIDE);
+								this.zone.modification(posX, posY + y, ContenuZone.JOUEUR);
+								this.shipJoueur.translate(0, y);
+								return false; // utiliser une constante
+							}
+							else
+							{			// sinon déplacement
+								this.zone.modification(posX, posY, ContenuZone.VIDE);
+								this.zone.modification(posX, posY + y, ContenuZone.JOUEUR);
+								this.shipJoueur.translate(0, y);
+							}
+						}
+						catch (HorsZoneException e)
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		
+					}
+					return true;
 				}
-
 			}
 			return true;
 		}

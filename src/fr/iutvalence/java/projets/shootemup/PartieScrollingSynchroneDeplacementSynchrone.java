@@ -134,7 +134,20 @@ public class PartieScrollingSynchroneDeplacementSynchrone
 
 		}
 	}
-
+	/**
+	 * @return l'état du vaisseau sous forme de booléen 
+	 */
+	public boolean enVie()
+	{
+		if (this.vies != 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	/**
 	 * déplace le ship joueur
 	 * 

@@ -35,7 +35,7 @@ public class ThreadDeplacement extends Thread
 	public void run()
 	{
 		Direction mouvement = Direction.FIXE;
-		while (this.toScroll.mouvement(mouvement))
+		while (this.toScroll.mouvement(mouvement)&&(this.toScroll.enVie()))
 		{
 				int alea = (int) (Math.random() * 5);
 				switch (alea)

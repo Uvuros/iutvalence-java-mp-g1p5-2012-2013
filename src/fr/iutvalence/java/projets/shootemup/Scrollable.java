@@ -19,5 +19,9 @@ public interface Scrollable
 	 * @return true si vivant mort sinon ( a faire)
 	 */
 	public boolean mouvement(Direction direction);
+	/**
+	 * @return l'état du vaisseau sous forme de booléen 
+	 */
+	public boolean enVie();
 
 }

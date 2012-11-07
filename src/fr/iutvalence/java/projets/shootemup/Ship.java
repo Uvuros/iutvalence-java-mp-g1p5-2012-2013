@@ -91,8 +91,8 @@ public class Ship
 		this.position = new Position(x, y);
 		//this.tir = false;
 		this.typeShip = ContenuZone.ENNEMI;
-
-		terrain.modification(this.position.getX(), this.position.getY(), this.typeShip);
+		
+		terrain.modification(this.position, this.typeShip);
 	}
 
 	/**
@@ -106,15 +106,11 @@ public class Ship
 
 	/**
 	 * permet de changer de position
-	 * 
-	 * @param x
-	 *            translation en x à effectuer
-	 * @param y
-	 *            translation en y à effectuer
+	 * @param p position vers laquelle translater
 	 */
-	public void translate(int x, int y)
+	public void translateTo(Position p)
 	{
-		this.position.translate(x, y);
+		this.position = p;
 	}
 
 	

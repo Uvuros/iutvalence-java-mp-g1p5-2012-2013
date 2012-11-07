@@ -82,35 +82,27 @@ public class Zone
 
 	/**
 	 * met la valeur Valeur dans zone[x][y]
-	 * 
-	 * @param x
-	 *            emplacement sur l'axe x
-	 * @param y
-	 *            emplacement sur l'axe y
+	 * @param p position dans la zone que nous voulons modifier
 	 * @param valeur
 	 *            Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
 	 */
-	public void modification(int x, int y, ContenuZone valeur)
+	public void modification(Position p, ContenuZone valeur)
 	{
-		this.zone[y][x] = valeur;
+		this.zone[p.getY()][p.getX()] = valeur;
 	}
 
 	/**
 	 * Renvoie le contenu d'une case de la zone de jeux
-	 * 
-	 * @param x
-	 *            emplacement sur l'axe x
-	 * @param y
-	 *            emplacement sur l'axe y
+	 * @param p position dans la zone pour laquel nous voulons savoir le contenu
 	 * @return contenu de la case ciblée
 	 * @throws HorsZoneException
 	 *             lorsque x ou y est en dehors de la zone de jeux
 	 */
-	public ContenuZone contenu(int x, int y) throws HorsZoneException
+	public ContenuZone contenu(Position p) throws HorsZoneException
 	{
-		if ((x > this.taille) || (x < 0) || (y > this.taille) || (y < 0))
+		if ((p.getX() > this.taille) || (p.getX() < 0) || (p.getY() > this.taille) || (p.getY() < 0))
 			throw new HorsZoneException();
-		return this.zone[y][x];
+		return this.zone[p.getY()][p.getX()];
 	}
 
 	
@@ -162,6 +154,16 @@ public class Zone
 		}
 		return collision;
 
+	}
+	
+	/**
+	 * test une position pour savoir si elel est dans la zone
+	 * @param p position a tester
+	 * @return vrai si la position est dans la zone faux sinon
+	 */
+	public boolean estDansZone(Position p)
+	{
+		return ((p.getX()> 0) && (p.getX()< this.taille) && (p.getY()> 0) && (p.getY()< this.taille));
 	}
 
 	/**

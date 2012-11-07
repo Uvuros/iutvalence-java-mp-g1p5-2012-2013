@@ -41,15 +41,17 @@ public class Position
 	}
 
 	/**
+	 * 
+	 * renvoie une nouvelle position égale à l'ancienne plus x,y
 	 * @param x
 	 *            translation en x voulue
 	 * @param y
 	 *            translation en y voulue
+	 * @return retourne un nouvel objet avec la position après translation 
 	 */
-	public void translate(int x, int y)
+	public Position translate(int x, int y)
 	{
-		this.x = this.x + x;
-		this.y = this.y + y;
+		return new Position(this.x+x,this.y+y);
 	}
 
 	/**

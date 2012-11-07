@@ -33,9 +33,8 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone implements Scrollabl
 		 */
 		public int score;
 
-		// FIXME (FIXED)corriger le commentaire (à discuter)
 		/**
-		 * zone de jeux sur laquelle évoluent les vaisseaux
+		 * zone de jeu sur laquelle évoluent les vaisseaux
 		 */
 		public Zone zone;
 
@@ -44,9 +43,8 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone implements Scrollabl
 		 */
 		public int vies;
 		
-		// FIXME (FIXED ?)corriger le commentaire
 		/**
-		 * Joueur représente les interaction entre le joueur et la partie 
+		 * Joueur représente les interactions entre le joueur et la partie 
 		 */
 		private Joueur joueur;
 		
@@ -293,8 +291,9 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone implements Scrollabl
 		{
 			if (this.zone.scroll())
 			{
+				boolean res = this.vieMoins();
 				this.affichage.afficherZone(this.zone.getZone());
-				return this.vieMoins();
+				return res;
 			}
 			this.affichage.afficherZone(this.zone.getZone());
 			return true;

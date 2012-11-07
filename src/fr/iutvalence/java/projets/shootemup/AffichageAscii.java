@@ -1,8 +1,7 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME (FIXED) détailler le commentaire
 /**
- * Affichage d'un tableau à deux dimenssions en ASCII art
+ * Implementation de l'interface d'affichage où l'affichage est réalisé en ascii-art
  * 
  * @author deguitre & Pignet
  * 
@@ -50,7 +49,6 @@ public class AffichageAscii implements Affichage
 			{
 				switch (zone[x][y])
 				{
-					// FIXME (FIXED) utiliser des constantes
 					case VIDE:
 						result = result + VIDE;
 						break;

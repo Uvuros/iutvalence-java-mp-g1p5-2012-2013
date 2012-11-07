@@ -1,6 +1,5 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME (FIXED) détailler le commentaire
 /**
  * Interface de controle, permet d'obtenir un deplacement
  * 
@@ -10,12 +9,10 @@ package fr.iutvalence.java.projets.shootemup;
 public interface Joueur
 {
 
-	// FIXME (FIXED) corriger le commentaire (l'interface ne spécifie pas la réalisation du service)
-	// FIXME (FIXED) définir une énumération pour les différentes directions de déplacement
 	/**
-	 * Renvoie un chiffre représentant le déplacement du joueur
+	 * Obtenir la direction dans laquelle le joueur souhaite se déplacer
 	 * 
-	 * @return représentation du déplacement du joueur
+	 * @return la direction dans laquelle le joueur souhaite se déplacerr
 	 */
 	public Direction getDeplacement();
 

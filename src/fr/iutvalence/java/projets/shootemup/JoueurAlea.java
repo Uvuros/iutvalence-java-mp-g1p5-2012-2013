@@ -1,8 +1,7 @@
 package fr.iutvalence.java.projets.shootemup;
 
-// FIXME (FIXED) détailler le commentaire
 /**
- * Classe de controle, génére des choix aléatoire 
+ * Classe de controle, génère des choix aléatoires 
  * 
  * @author deguitre & Pignet
  * 
@@ -10,9 +9,8 @@ package fr.iutvalence.java.projets.shootemup;
 public class JoueurAlea implements Joueur
 {
 	/**
-	 * 
+	 * Retourne une direction choisie equiprobablement parmi les valeurs possibles.
 	 * @see fr.iutvalence.java.projets.shootemup.Joueur#getDeplacement()
-	 * @Override
 	 */
 	
 	public Direction getDeplacement()

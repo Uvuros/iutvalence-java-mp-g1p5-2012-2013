@@ -8,16 +8,15 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public interface Affichage
 {
-	// FIXME (FIXED) compléter le commentaire (param)
 	/**
 	 * Affichage de la zone
 	 * 
-	 * @param zone que l'ont veut afficher
+	 * @param zone zone que l'on veut afficher
 	 */
 	public void afficherZone(ContenuZone[][] zone);
 	
 	/**
-	 * @param nbViesRestantes à afficher
+	 * @param nbViesRestantes vies restantes à afficher
 	 */
 	public void notificationNbViesRestantes(int nbViesRestantes);
 	

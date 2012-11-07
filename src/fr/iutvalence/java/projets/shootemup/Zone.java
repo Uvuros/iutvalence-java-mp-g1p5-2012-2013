@@ -28,13 +28,11 @@ public class Zone
 	/**
 	 * Tableaux à deux dimensions représentant la zone de jeux (contenu des case = [VIDE,ENNEMi,JOUEUR]
 	 */
-	// FIXME (FIXED)(une fois l'énumération définie) utiliser le type énuméré
 	private ContenuZone[][] zone;
 
 	/**
-	 * Taille de la zone de jeux
+	 * Taille de la zone de jeu
 	 */
-	// FIXME (FIXED) la taille change t'elle une fois la zone créée ? non
 	private final int taille;
 
 	/**
@@ -116,11 +114,10 @@ public class Zone
 	}
 
 	
-	// FIXME (FIXED) corriger le commentaire (@return)
 	/**
 	 * Fonction de défilement de la zone de jeu
 	 * 
-	 * @return <tt>COLLISION</tt> si il y as eu une collision lors du scroll sinon <tt>NON_COLLISION</tt>
+	 * @return <tt>COLLISION</tt> s'il y a eu une collision lors du scroll sinon <tt>NON_COLLISION</tt>
 	 */
 	public boolean scroll()
 	{							// Scroll depuis le bas vers le haut de la zone
@@ -177,7 +174,6 @@ public class Zone
 		return this.zone;
 	}
 
-	// FIXME (FIXED) détailler le commentaire (dire à quoi ressemble la chaine retournée)
 	/**
 	 * Affichage de type :
 	 *    |   

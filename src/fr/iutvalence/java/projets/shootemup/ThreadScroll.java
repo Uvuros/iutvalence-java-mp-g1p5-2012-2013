@@ -34,7 +34,7 @@ public class ThreadScroll extends Thread
 	}
 	public void run()
 	{
-		while (this.toScroll.scroll()&&(this.toScroll.enVie()))
+		while (this.toScroll.scroll())
 		{
 			// Ajouter affichage
 			pause(250);

@@ -133,7 +133,8 @@ public abstract class Partie implements Scrollable
 	}
 
 	/**
-	 * @see fr.iutvalence.java.projets.shootemup.Scrollable#enVie()
+	 * fonction permettant de savoir si le joueur est encore en vie
+	 * @return true si en vie false sinon
 	 */
 	protected boolean enVie()
 	{
@@ -182,7 +183,7 @@ public abstract class Partie implements Scrollable
 				y = 0;
 		}
 
-		// FIXME se servir de position, position#translate, zone#estDansZone pour simplifier
+		// FIXME (FIXED) se servir de position, position#translate, zone#estDansZone pour simplifier
 
 		Position oldPos = this.shipJoueur.getPosition();
 		Position nouvPos = oldPos.translate(x, y);
@@ -208,16 +209,14 @@ public abstract class Partie implements Scrollable
 
 
 	/**
-	 * @param move
-	 * @return
+	 * @param move direction dans laquel bouger
+	 * @return retourne false si le joueur meurt suite a se déplacement true sinon
 	 */
 	protected boolean mouvement(Direction move)
 	{
 		if (!this.deplacement(move))
 			this.vieMoins();
-
 		this.affichage.afficherZone(this.zone.getZone());
-		
 		return (this.vies > 0);
 	}
 

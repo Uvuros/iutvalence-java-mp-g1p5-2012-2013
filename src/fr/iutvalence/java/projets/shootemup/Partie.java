@@ -195,9 +195,9 @@ public abstract class Partie implements Scrollable
 			try
 			{
 				this.zone.modification(oldPos, ContenuZone.VIDE);
+				boolean contenuzone = (this.zone.contenu(nouvPos) == ContenuZone.ENNEMI);
 				this.zone.modification(nouvPos, ContenuZone.JOUEUR);
-				
-				return !(this.zone.contenu(nouvPos) == ContenuZone.ENNEMI);
+				return !(contenuzone);
 			}
 			catch (HorsZoneException e)
 			{
@@ -214,7 +214,7 @@ public abstract class Partie implements Scrollable
 	 */
 	protected boolean mouvement(Direction move)
 	{
-		if (!this.deplacement(move))
+		if (!(this.deplacement(move)))
 			this.vieMoins();
 		this.affichage.afficherZone(this.zone.getZone());
 		return (this.vies > 0);
@@ -223,27 +223,23 @@ public abstract class Partie implements Scrollable
 	public boolean scroll()
 	{
 
-		// int i = 0;
-		// while (this.vies != 0)
-		// {
-		// if (i == 0)
-		// {
-		// this.zone.modification((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0, ContenuZone.ENNEMI);
-		// i = 1;
-		// }
-		// else
-		// {
-		// i = 0;
-		// }
-		// pause(250);
-		// }
-		boolean res = true;
-
+		 int i = 0;
+		 while (this.vies != 0)
+		 {
+				 if (i == 0)
+		 		{
+		 			this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0), ContenuZone.ENNEMI);
+					 i = 1;
+		 		}
+				 else
+		 		{
+					 i = 0;
+		 		}
+		 }
 		if (this.zone.scroll())
-			res = this.vieMoins();
-
+			this.vieMoins();
 		this.affichage.afficherZone(this.zone.getZone());
-		return res;
+		return this.enVie();
 	}
 
 	/**

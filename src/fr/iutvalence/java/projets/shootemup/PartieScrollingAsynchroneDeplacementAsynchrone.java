@@ -27,7 +27,7 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 		public void start()
 		{
 			int i = 0;
-			while (this.vies != 0)
+			while (this.vies > 0)
 			{
 				if (i == 0)
 				{

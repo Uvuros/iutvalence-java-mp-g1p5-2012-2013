@@ -223,9 +223,8 @@ public abstract class Partie implements Scrollable
 	public boolean scroll()
 	{
 
-		 int i = 0;
-		 while (this.vies != 0)
-		 {
+
+		/* int i = 0;
 				 if (i == 0)
 		 		{
 		 			this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0), ContenuZone.ENNEMI);
@@ -234,8 +233,8 @@ public abstract class Partie implements Scrollable
 				 else
 		 		{
 					 i = 0;
-		 		}
-		 }
+		 		}*/
+
 		if (this.zone.scroll())
 			this.vieMoins();
 		this.affichage.afficherZone(this.zone.getZone());

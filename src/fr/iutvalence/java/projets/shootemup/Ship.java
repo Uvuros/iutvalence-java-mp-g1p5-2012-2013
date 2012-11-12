@@ -56,7 +56,7 @@ public class Ship
 	private ContenuZone typeShip;
 
 	/**
-	 * Etat du vaisseau, 1 pour VIVANT, -1 pour MORT
+	 * Etat du vaisseau, true pour VIVANT, false pour MORT
 	 */
 	private boolean etat;
 

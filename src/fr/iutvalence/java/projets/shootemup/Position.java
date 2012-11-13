@@ -8,6 +8,8 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class Position
 {
+	
+	// FIXME si x et y ne peuvent pas être modifiés, les déclarer final
 	/**
 	 * position sur l'axe x
 	 */
@@ -43,15 +45,16 @@ public class Position
 	/**
 	 * 
 	 * renvoie une nouvelle position égale à l'ancienne plus x,y
+	 * 
 	 * @param x
 	 *            translation en x voulue
 	 * @param y
 	 *            translation en y voulue
-	 * @return retourne un nouvel objet avec la position après translation 
+	 * @return retourne un nouvel objet avec la position après translation
 	 */
 	public Position translate(int x, int y)
 	{
-		return new Position(this.x+x,this.y+y);
+		return new Position(this.x + x, this.y + y);
 	}
 
 	/**
@@ -81,6 +84,7 @@ public class Position
 
 	/**
 	 * Deux positions sont équivalentes si elles otn les memes valeurs de x et de y
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object o)

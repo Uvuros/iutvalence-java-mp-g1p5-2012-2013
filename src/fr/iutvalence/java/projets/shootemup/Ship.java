@@ -11,12 +11,11 @@ package fr.iutvalence.java.projets.shootemup;
  * 
  */
 public class Ship
-{	
+{
 	/**
 	 * valeur des coordonnées x ou y max
 	 */
 	public static final int MAX = 100;
-	
 
 	/**
 	 * valeur du vaisseau joueur
@@ -28,27 +27,26 @@ public class Ship
 	 * valeur des vaisseaux de ennemis
 	 */
 	public static final int ENNEMI = 2;
-	
+
 	/**
 	 * valeur des coordonnées x ou y min
 	 */
 	public static final int MIN = 100;
-	
+
 	/**
 	 * Valeur représentant la mort du joueur
 	 */
 	public static final boolean MORT = false;
-	
+
 	/**
 	 * Valeur indiquant que le joueur est en vie
 	 */
 	public static final boolean VIVANT = true;
-	
+
 	/**
 	 * Position du vaisseau
 	 */
 	private Position position;
-
 
 	/**
 	 * Représente le type de vaisseau
@@ -71,7 +69,7 @@ public class Ship
 
 		this.etat = VIVANT;
 		this.position = new Position(maxzone / 2, maxzone - 1);
-		//this.tir = false;
+		// this.tir = false;
 		this.typeShip = ContenuZone.JOUEUR;
 	}
 
@@ -89,14 +87,15 @@ public class Ship
 	{
 		this.etat = VIVANT;
 		this.position = new Position(x, y);
-		//this.tir = false;
+		// this.tir = false;
 		this.typeShip = ContenuZone.ENNEMI;
-		
+
 		terrain.modification(this.position, this.typeShip);
 	}
 
 	/**
 	 * Permet d'obtenir la position du vaisseau
+	 * 
 	 * @return la position du vaisseau
 	 */
 	public Position getPosition()
@@ -106,14 +105,14 @@ public class Ship
 
 	/**
 	 * permet de changer de position
-	 * @param p position vers laquelle translater
+	 * 
+	 * @param p
+	 *            position vers laquelle translater
 	 */
 	public void translateTo(Position p)
 	{
 		this.position = p;
 	}
-
-	
 
 	/**
 	 * fonction permettant de détruire l'unitée
@@ -122,16 +121,20 @@ public class Ship
 	{
 		this.etat = MORT;
 	}
+
 	/**
 	 * Permet d'obtenir le type du vaisseau
+	 * 
 	 * @return le type du vaisseau
 	 */
 	public ContenuZone getType()
 	{
 		return this.typeShip;
 	}
+
 	/**
-	 * Permet d'otenir l'etat du vaisseau 
+	 * Permet d'otenir l'etat du vaisseau
+	 * 
 	 * @return l'etat du vaisseau
 	 */
 	public boolean getEtat()

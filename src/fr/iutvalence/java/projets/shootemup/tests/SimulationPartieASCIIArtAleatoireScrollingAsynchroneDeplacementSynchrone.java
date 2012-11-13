@@ -24,7 +24,8 @@ public class SimulationPartieASCIIArtAleatoireScrollingAsynchroneDeplacementSync
 	{
 		AffichageAscii affichage = new AffichageAscii();
 		JoueurAlea joueur = new JoueurAlea();
-		PartieScrollingAsynchroneDeplacementSynchrone p = new PartieScrollingAsynchroneDeplacementSynchrone("Uvuros", joueur, affichage);
+		PartieScrollingAsynchroneDeplacementSynchrone p = new PartieScrollingAsynchroneDeplacementSynchrone("Uvuros",
+				joueur, affichage);
 		ThreadScroll t = new ThreadScroll(p);
 		t.start();
 		p.start();

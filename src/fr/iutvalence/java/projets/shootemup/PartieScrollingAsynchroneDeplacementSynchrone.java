@@ -1,5 +1,6 @@
 package fr.iutvalence.java.projets.shootemup;
 
+//FIXME préciser la particularité de cette implémentation
 /**
  * Classe partie
  * 
@@ -8,17 +9,20 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class PartieScrollingAsynchroneDeplacementSynchrone extends Partie implements Scrollable
 {
-	
+
 	/**
 	 * Appel au superconstructeur de la classe Partie
-	 * @param pseudo pseudo du joueur
-	 * @param joueur interface de controle
-	 * @param affichage interface d'affichage
+	 * 
+	 * @param pseudo
+	 *            pseudo du joueur
+	 * @param joueur
+	 *            interface de controle
+	 * @param affichage
+	 *            interface d'affichage
 	 */
 	public PartieScrollingAsynchroneDeplacementSynchrone(String pseudo, Joueur joueur, Affichage affichage)
 	{
 		super(pseudo, joueur, affichage);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -32,7 +36,8 @@ public class PartieScrollingAsynchroneDeplacementSynchrone extends Partie implem
 		{
 			if (i == 0)
 			{
-				this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0), ContenuZone.ENNEMI);
+				this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0),
+						ContenuZone.ENNEMI);
 				i = 1;
 			}
 			else
@@ -47,8 +52,10 @@ public class PartieScrollingAsynchroneDeplacementSynchrone extends Partie implem
 			pause(250);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.iutvalence.java.projets.shootemup.Scrollable#scroll()
 	 */
 	@Override
@@ -63,6 +70,4 @@ public class PartieScrollingAsynchroneDeplacementSynchrone extends Partie implem
 		return true;
 	}
 
-
-	
 }

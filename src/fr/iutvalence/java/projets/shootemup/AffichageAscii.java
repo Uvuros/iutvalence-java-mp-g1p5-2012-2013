@@ -16,18 +16,17 @@ public class AffichageAscii implements Affichage
 	 * Chaine représentant l'affichage d'une case ennemi
 	 */
 	public static final String ENNEMI = "|";
-	
-//	/**
-//	 * Chaine représentant l'affichage d'une case vaisseau
-//	 */
-//	public static final String VAISSEAU = "A";
-	
+
+	// /**
+	// * Chaine représentant l'affichage d'une case vaisseau
+	// */
+	// public static final String VAISSEAU = "A";
+
 	/**
 	 * Vies restantes à afficher à la place de Contenu.JOUEUR
 	 */
 	private int nbViesRestantes;
-	
-	
+
 	/**
 	 * Initialise l'affichage
 	 */
@@ -35,7 +34,7 @@ public class AffichageAscii implements Affichage
 	{
 		this.nbViesRestantes = 0;
 	}
-	
+
 	/**
 	 * @see fr.iutvalence.java.projets.shootemup.Affichage#afficherZone(ContenuZone[][])
 	 */
@@ -66,14 +65,14 @@ public class AffichageAscii implements Affichage
 			result = result + "\r\n";
 		}
 		result += "-------------------------";
-		System.out.println(result);
-		System.out.println();
+		System.out.print(result);
+		//System.out.println();
 	}
 
 	@Override
 	public void notificationNbViesRestantes(int nbViesRestantes)
 	{
 		this.nbViesRestantes = nbViesRestantes;
-		
+
 	}
 }

@@ -134,6 +134,7 @@ public abstract class Partie implements Scrollable
 
 	/**
 	 * fonction permettant de savoir si le joueur est encore en vie
+	 * 
 	 * @return true si en vie false sinon
 	 */
 	protected boolean enVie()
@@ -183,15 +184,13 @@ public abstract class Partie implements Scrollable
 				y = 0;
 		}
 
-		// FIXME (FIXED) se servir de position, position#translate, zone#estDansZone pour simplifier
-
 		Position oldPos = this.shipJoueur.getPosition();
 		Position nouvPos = oldPos.translate(x, y);
 
 		if (this.zone.estDansZone(nouvPos))
 		{
 			this.shipJoueur.translateTo(nouvPos);
-			
+
 			try
 			{
 				this.zone.modification(oldPos, ContenuZone.VIDE);
@@ -207,9 +206,9 @@ public abstract class Partie implements Scrollable
 		return true;
 	}
 
-
 	/**
-	 * @param move direction dans laquel bouger
+	 * @param move
+	 *            direction dans laquel bouger
 	 * @return retourne false si le joueur meurt suite a se déplacement true sinon
 	 */
 	protected boolean mouvement(Direction move)
@@ -223,17 +222,10 @@ public abstract class Partie implements Scrollable
 	public boolean scroll()
 	{
 
-
-		/* int i = 0;
-				 if (i == 0)
-		 		{
-		 			this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0), ContenuZone.ENNEMI);
-					 i = 1;
-		 		}
-				 else
-		 		{
-					 i = 0;
-		 		}*/
+		/*
+		 * int i = 0; if (i == 0) { this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() -
+		 * 1) + 1)) + 0, 0), ContenuZone.ENNEMI); i = 1; } else { i = 0; }
+		 */
 
 		if (this.zone.scroll())
 			this.vieMoins();

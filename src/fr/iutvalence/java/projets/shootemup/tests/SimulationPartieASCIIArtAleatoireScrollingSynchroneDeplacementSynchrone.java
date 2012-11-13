@@ -23,7 +23,8 @@ public class SimulationPartieASCIIArtAleatoireScrollingSynchroneDeplacementSynch
 	{
 		AffichageAscii affichage = new AffichageAscii();
 		JoueurAlea joueur = new JoueurAlea();
-		PartieScrollingSynchroneDeplacementSynchrone p = new PartieScrollingSynchroneDeplacementSynchrone("Uvuros", joueur, affichage);
+		PartieScrollingSynchroneDeplacementSynchrone p = new PartieScrollingSynchroneDeplacementSynchrone("Uvuros",
+				joueur, affichage);
 		p.start();
 	}
 

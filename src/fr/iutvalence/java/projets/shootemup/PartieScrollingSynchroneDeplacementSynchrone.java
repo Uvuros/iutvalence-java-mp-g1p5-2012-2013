@@ -1,5 +1,6 @@
 package fr.iutvalence.java.projets.shootemup;
 
+//FIXME préciser la particularité de cette implémentation
 /**
  * Classe partie
  * 
@@ -9,14 +10,16 @@ package fr.iutvalence.java.projets.shootemup;
 public class PartieScrollingSynchroneDeplacementSynchrone extends Partie
 {
 	/**
-	 * @param pseudo pseudo du joueur
-	 * @param joueur interface de controle
-	 * @param affichage interface d'affichage
+	 * @param pseudo
+	 *            pseudo du joueur
+	 * @param joueur
+	 *            interface de controle
+	 * @param affichage
+	 *            interface d'affichage
 	 */
 	public PartieScrollingSynchroneDeplacementSynchrone(String pseudo, Joueur joueur, Affichage affichage)
 	{
 		super(pseudo, joueur, affichage);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -29,7 +32,8 @@ public class PartieScrollingSynchroneDeplacementSynchrone extends Partie
 		{
 			if (i == 0)
 			{
-				this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0), ContenuZone.ENNEMI);
+				this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0),
+						ContenuZone.ENNEMI);
 				i = 1;
 			}
 			else
@@ -37,11 +41,13 @@ public class PartieScrollingSynchroneDeplacementSynchrone extends Partie
 				i = 0;
 			}
 			// Déplacement => gestion collision
-			if (!this.mouvement(this.joueur.getDeplacement())) continue;
-			
+			if (!this.mouvement(this.joueur.getDeplacement()))
+				continue;
+
 			// Scroll => gestion collision
-			if (!this.scroll()) continue;
-			
+			if (!this.scroll())
+				continue;
+
 			// Affichage
 			this.affichage.afficherZone(this.zone.getZone());
 			pause(250);

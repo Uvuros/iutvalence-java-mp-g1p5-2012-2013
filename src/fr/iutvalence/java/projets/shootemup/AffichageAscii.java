@@ -62,9 +62,9 @@ public class AffichageAscii implements Affichage
 				}
 
 			}
-			result = result + "\r\n";
+			result = result + "| \r\n";
 		}
-		result += "-------------------------";
+		result += "-----------";
 		System.out.print(result);
 		//System.out.println();
 	}

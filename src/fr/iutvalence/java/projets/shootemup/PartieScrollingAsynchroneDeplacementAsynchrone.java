@@ -7,7 +7,7 @@ package fr.iutvalence.java.projets.shootemup;
  * @author Deguitre & Pignet
  * 
  */
-public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie implements Scrollable
+public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie implements Deplacement
 {
 
 	/**
@@ -45,6 +45,13 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 			}
 			pause(250);
 		}
+	}
+
+	@Override
+	public boolean move(Direction d)
+	{
+		this.deplacement(d);
+		return (this.vies >0);
 	}
 
 }

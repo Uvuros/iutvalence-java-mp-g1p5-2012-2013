@@ -6,7 +6,7 @@ package fr.iutvalence.java.projets.shootemup;
  * @author Deguitre & Pignet
  * 
  */
-public abstract class Partie implements Scrollable
+public abstract class Partie implements Scrollable 
 {
 	/**
 	 * Taille par défaut de la zone de jeux

@@ -11,7 +11,8 @@ public class ThreadDeplacement extends Thread
 	/**
 	 * objet sur lequel scroller
 	 */
-	private Scrollable toScroll;
+	private Deplacement deplacement;
+	private Joueur joueur;
 
 	/**
 	 * initialise un nouveau thread qui permettra de scroller sur l'objet placé en paramétre
@@ -19,9 +20,10 @@ public class ThreadDeplacement extends Thread
 	 * @param p
 	 *            objet sur lequel scroller
 	 */
-	public ThreadDeplacement(Scrollable p)
+	public ThreadDeplacement(Deplacement d,Joueur j)
 	{
-		this.toScroll = p;
+		this.deplacement = d;
+		this.joueur = j;
 	}
 
 	/**
@@ -42,36 +44,8 @@ public class ThreadDeplacement extends Thread
 	public void run()
 	{
 		Direction mouvement = Direction.FIXE;
-		while (((PartieScrollingAsynchroneDeplacementAsynchrone) this.toScroll).mouvement(mouvement))
+		while (this.deplacement.move(this.joueur.getDeplacement()))
 		{
-			int alea = (int) (Math.random() * 5);
-			switch (alea)
-			{
-				case 0:
-					mouvement = Direction.FIXE;
-					break;
-
-				case 1:
-					mouvement = Direction.GAUCHE;
-					break;
-
-				case 2:
-					mouvement = Direction.DROITE;
-					break;
-
-				case 3:
-					mouvement = Direction.HAUT;
-					break;
-
-				case 4:
-					mouvement = Direction.BAS;
-					break;
-
-				default:
-					mouvement = Direction.FIXE;
-					break;
-			}
-
 			pause(150);
 		}
 	}

@@ -9,15 +9,15 @@ package fr.iutvalence.java.projets.shootemup;
 public class Position
 {
 	
-	// FIXME si x et y ne peuvent pas être modifiés, les déclarer final
+	// FIXME (FIXED) si x et y ne peuvent pas être modifiés, les déclarer final
 	/**
 	 * position sur l'axe x
 	 */
-	private int x;
+	private final int x;
 	/**
 	 * position sur l'axe y
 	 */
-	private int y;
+	private final int y;
 
 	/**
 	 * Initialise la position <0,0>

@@ -1,27 +1,72 @@
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import fr.iutvalence.java.projets.shootemup.BackGroundPanel;
 
 public class TestFrame
 {
 	public static void main(String[] args)
 	{
 		JFrame jf = new JFrame("Test");
-		jf.setSize(640,480);
-
+		jf.setSize(160,160);
 		jf.setResizable(false);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ImageIcon icon = new ImageIcon("./images/Troll.png", "troll");
-		GridLayout gl = new GridLayout(2, 2);
-		jf.getContentPane().setLayout(gl);
+		ImageIcon mine = new ImageIcon("./images/mine_32x32.png");
+		ImageIcon vaisseau = new ImageIcon("./images/vaisseau_32x32.png");
+		ImageIcon vide = new ImageIcon("./images/vide_32x32.png");
 		
-		JLabel label1 = new JLabel("Image and Text", icon, JLabel.CENTER);
-		JLabel label2 = new JLabel("Image and Text", icon, JLabel.CENTER);
-		jf.getContentPane().add(label1);
+		ImageIcon image = new ImageIcon("./images/fond_noir_etoile.png");
+		BackGroundPanel bgp = new BackGroundPanel(image.getImage());
+		jf.setContentPane(bgp);
 		
-		jf.getContentPane().add(label2);
+		GridLayout gl = new GridLayout(5, 5);
+		gl.preferredLayoutSize(jf);
+		
+		Container contentPane = jf.getContentPane();
+		contentPane.setLayout(gl);
+		contentPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		contentPane.setBackground(Color.BLACK);
+		
+		Random r = new Random();
+		boolean v = false;
+		
+		for (int i=1; i<25;i++)
+		{
+			int rand = r.nextInt(3);
+			if ((rand == 0)&& (!v)) 
+			{
+				contentPane.add(new JLabel(vaisseau));
+				System.out.println("Va");
+				v = true;
+			}
+			else
+			{
+				if (rand == 1)
+				{
+					contentPane.add(new JLabel(mine));
+					System.out.println("Mi");
+				}
+				else 
+					{
+					contentPane.add(new JLabel(vide));
+					System.out.println("Vi");
+					}
+			}
+			
+		}
+		
+		
+		
+		
 		jf.setVisible(true);
 		
 	}

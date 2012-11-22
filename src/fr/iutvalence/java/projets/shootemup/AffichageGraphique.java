@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,14 +16,31 @@ import javax.swing.JLabel;
  */
 public class AffichageGraphique implements Affichage
 {
+	/**
+	 * taille de la zone de jeu (en case)
+	 */
 	private int size;
-	private JFrame jf; 
+	/**
+	 * tableau à deux dimenssions de label utilisé pour remplir la GridLayout
+	 */
 	private JLabel[][] labels;
 	
+	/**
+	 * constante, image mine
+	 */
 	private final static ImageIcon MINE = new ImageIcon("./images/mine_32x32.png");
+	/**
+	 * constante, image vaisseau
+	 */
 	private final static ImageIcon VAISSEAU = new ImageIcon("./images/vaisseau_32x32.png");
+	/**
+	 * constante, image vide
+	 */
 	private final static ImageIcon VIDE = new ImageIcon("./images/vide_32x32.png");
 	
+	/**
+	 * @param size nombre de case en hauteur / largeur
+	 */
 	public AffichageGraphique(int size) 
 	{
 		this.size = size;
@@ -34,7 +49,6 @@ public class AffichageGraphique implements Affichage
 		jf.setSize(32*size,32*size);
 		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.jf = jf;
 		jf.setContentPane(new BackGroundPanel(new ImageIcon("./images/fond_noir_etoile.png").getImage()));
 		GridLayout gl = new GridLayout(size, size);
 		gl.preferredLayoutSize(jf);
@@ -42,9 +56,6 @@ public class AffichageGraphique implements Affichage
 		contentPane.setLayout(gl);
 		contentPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		contentPane.setBackground(Color.BLACK);
-		
-		Random r = new Random();
-		boolean v = false;
 		
 		for (int y=0; y<size;y++)
 		{
@@ -76,9 +87,7 @@ public class AffichageGraphique implements Affichage
 					this.labels[y][x].repaint();
 				
 			}
-		}
-		System.out.println("aff");
-		
+		}	
 	}
 	@Override
 	public void notificationNbViesRestantes(int nbViesRestantes)

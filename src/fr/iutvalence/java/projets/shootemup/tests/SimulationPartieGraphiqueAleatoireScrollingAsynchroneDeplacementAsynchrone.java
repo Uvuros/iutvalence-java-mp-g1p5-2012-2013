@@ -2,6 +2,7 @@ package fr.iutvalence.java.projets.shootemup.tests;
 
 import fr.iutvalence.java.projets.shootemup.AffichageAscii;
 import fr.iutvalence.java.projets.shootemup.AffichageGraphique;
+import fr.iutvalence.java.projets.shootemup.DeplacementGraphique;
 import fr.iutvalence.java.projets.shootemup.JoueurAlea;
 import fr.iutvalence.java.projets.shootemup.JoueurClavier;
 import fr.iutvalence.java.projets.shootemup.PartieScrollingAsynchroneDeplacementAsynchrone;
@@ -27,10 +28,11 @@ public class SimulationPartieGraphiqueAleatoireScrollingAsynchroneDeplacementAsy
 	{
 		AffichageGraphique affichage = new AffichageGraphique(8);
 		JoueurClavier joueur = new JoueurClavier();
-		PartieScrollingAsynchroneDeplacementAsynchrone p = new PartieScrollingAsynchroneDeplacementAsynchrone("Uvuros",
+		PartieScrollingAsynchroneDeplacementAsynchrone  p = new PartieScrollingAsynchroneDeplacementAsynchrone("Uvuros",
 				joueur, affichage);
 		ThreadScroll s = new ThreadScroll(p);
 		ThreadDeplacement d = new ThreadDeplacement(p,joueur);
+		DeplacementGraphique deplacement = new DeplacementGraphique(affichage,p);
 		s.start();
 		d.start();
 		p.start();

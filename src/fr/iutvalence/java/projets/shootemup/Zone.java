@@ -165,7 +165,7 @@ public class Zone
 	 */
 	public boolean estDansZone(Position p)
 	{
-		return ((p.getX() > 0) && (p.getX() < this.taille) && (p.getY() > 0) && (p.getY() < this.taille));
+		return ((p.getX() > -1) && (p.getX() < this.taille) && (p.getY() > -1) && (p.getY() < this.taille));
 	}
 
 	/**

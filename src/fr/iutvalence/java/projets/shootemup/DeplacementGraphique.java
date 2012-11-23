@@ -4,15 +4,24 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * classe permettant de se déplacer en fonction du key listener sur le JFrame de l'affichage
+ * @author deguitre & Pignet
+ *
+ */
 public class DeplacementGraphique
 {
+	/**
+	 * 
+	 */
 	private AffichageGraphique a;
-	private PartieScrollingAsynchroneDeplacementAsynchrone p;
-	
+	/**
+	 * @param a affichage graphique utilisé pour récupérer le keylistener
+	 * @param p partie utilisé pour appeler la fonction move
+	 */
 	public DeplacementGraphique(AffichageGraphique a,final PartieScrollingAsynchroneDeplacementAsynchrone p)
 	{
 		this.a = a;
-		this.p=p;
 	KeyListener k = new KeyAdapter()
     {
 		public void keyTyped(KeyEvent e)

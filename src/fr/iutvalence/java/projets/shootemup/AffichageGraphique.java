@@ -40,6 +40,10 @@ public class AffichageGraphique implements Affichage
 	 * constante, image vide
 	 */
 	private final static ImageIcon VIDE = new ImageIcon("./images/vide_32x32.png");
+	/**
+	 * constante, image vide
+	 */
+	private final static ImageIcon CINQCOEUR = new ImageIcon("./images/5coeur32.png");
 	public JFrame jf;
 	/**
 	 * @param size nombre de case en hauteur / largeur
@@ -62,7 +66,7 @@ public class AffichageGraphique implements Affichage
 		contentPane.setLayout(gl);
 		contentPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		contentPane.setBackground(Color.BLACK);
-		for (int y=0; y<size;y++)
+		for (int y=0; y<(size);y++)
 		{
 			for (int x=0; x<size;x++)
 			{
@@ -90,7 +94,6 @@ public class AffichageGraphique implements Affichage
 							break;
 					}
 					this.labels[y][x].repaint();
-				
 			}
 		}	
 	}

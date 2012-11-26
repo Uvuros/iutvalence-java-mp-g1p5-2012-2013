@@ -50,7 +50,10 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 	@Override
 	public boolean move(Direction d)
 	{
-		this.deplacement(d);
+		if(!this.deplacement(d))
+		{
+			this.vieMoins();
+		}
 		return (this.vies >0);
 	}
 

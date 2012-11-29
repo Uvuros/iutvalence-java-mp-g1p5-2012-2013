@@ -76,9 +76,11 @@ public class ThreadMissile extends Thread
 							//this.partie.zone.modification(newPos,ContenuZone.MISSILE_VAISSEAu);
 					}
 					this.partie.affichage.afficherZone(this.partie.zone.getZone());
+					this.position = newPos;
 				}
 				else
 				{
+					this.partie.zone.modification(this.position,ContenuZone.VIDE);
 					this.etat = false;
 				}
 			}
@@ -89,6 +91,11 @@ public class ThreadMissile extends Thread
 			e.printStackTrace();
 		}
 		}
+		else
+		{
+			this.etat = false;
+		}
+			
 	}
 	
 }

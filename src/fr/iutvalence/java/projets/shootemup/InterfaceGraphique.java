@@ -38,6 +38,10 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	 */
 	private JLabel[][] labels;
 	/**
+	 * constante, image missile
+	 */
+	private final static ImageIcon MISSILE = new ImageIcon("./images/missile.jpg");
+	/**
 	 * constante, image mine
 	 */
 	private final static ImageIcon MINE = new ImageIcon("./images/mine_32x32.png");
@@ -55,6 +59,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	private final static ImageIcon CINQCOEUR = new ImageIcon("./images/5coeur32.png");
 	
 	private JLabel scoreLabel;
+	private JLabel vie;
 	/**
 	 * @param size nombre de case en hauteur / largeur
 	 * @param p partie
@@ -87,7 +92,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 					panelZone.add(this.labels[y][x]);
 			}
 		}
-		
+		vie = new JLabel(this.CINQCOEUR);
 		scoreLabel = new JLabel("test");
 		scoreLabel.setAlignmentX(CENTER_ALIGNMENT);
 		scoreLabel.setBackground(Color.GRAY);
@@ -101,18 +106,24 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		panelPrincipal.setSize(ICON_SIZE*size,ICON_SIZE*(size));
 		GridBagLayout glPrincipal = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
+				//c.weightx = ICON_SIZE;
+				//c.fill = GridBagConstraints.HORIZONTAL;
+				//c.gridx = 0;
+				//c.gridy = 0;
+				//panelPrincipal.add(vie,c);
+				//vie.repaint();
 		//c.weightx = ICON_SIZE*size;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 0;
+				c.fill = GridBagConstraints.HORIZONTAL;
+				c.gridx = 0;
+				c.gridy = 1;
 		//glPrincipal.preferredLayoutSize(this);
 		panelPrincipal.setLayout(glPrincipal);
 		panelPrincipal.setBackground(Color.BLACK);
 		panelPrincipal.add(panelZone, c);
-		c.weightx = ICON_SIZE;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 1;
+		//c.weightx = ICON_SIZE;
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.gridx = 0;
+			c.gridy = 2;
 		panelPrincipal.add(scoreLabel,c);
 		
 		
@@ -128,14 +139,14 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	@Override
 	public void afficherZone(ContenuZone[][] zone)
 	{
-		for (int y=0; y<this.size;y++)
+		for (int y=0; y<this.size;y++) 
 		{
 			for (int x=0; x<this.size;x++)
 			{
 					switch(zone[y][x])
 					{
 					
-						case MISSILE : this.labels[y][x].setIcon(MINE);
+						case MISSILE : this.labels[y][x].setIcon(MISSILE);
 							break;
 						case ENNEMI : this.labels[y][x].setIcon(MINE);
 							break;
@@ -147,6 +158,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 					this.labels[y][x].repaint();
 			}
 		}	
+		vie.repaint();
 	}
 	@Override
 	public void notificationNbViesRestantes(int nbViesRestantes)
@@ -167,9 +179,9 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		break;
 		case KeyEvent.VK_DOWN : this.p.move(Direction.BAS);
 		break;
-		case KeyEvent.VK_UP :this.p.move(Direction.HAUT);
-		break;
-		case KeyEvent.VK_SPACE :this.p.move(Direction.HAUT);// new ThreadMissile(p).start();	
+		case KeyEvent.VK_UP : this.p.move(Direction.HAUT);
+		break;		 
+		case KeyEvent.VK_SPACE : new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
 		break;
 		}
 	}
@@ -187,6 +199,8 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		case KeyEvent.VK_DOWN : this.p.move(Direction.BAS);
 		break;
 		case KeyEvent.VK_UP : this.p.move(Direction.HAUT);
+		break;		
+		case KeyEvent.VK_SPACE : new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
 		break;
 		}
 	}

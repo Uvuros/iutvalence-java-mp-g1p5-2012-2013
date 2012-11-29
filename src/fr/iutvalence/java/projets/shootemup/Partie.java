@@ -26,7 +26,7 @@ public abstract class Partie implements Scrollable
 	/**
 	 * Vaisseau joueur
 	 */
-	private Ship shipJoueur;
+	protected Ship shipJoueur;
 
 	/**
 	 * zone de jeu sur laquelle évoluent les vaisseaux
@@ -36,7 +36,7 @@ public abstract class Partie implements Scrollable
 	/**
 	 * Représente le score du joueur
 	 */
-	private int score;
+	protected int score;
 
 	/**
 	 * Représente le nombre de vie du joueur
@@ -83,7 +83,23 @@ public abstract class Partie implements Scrollable
 		// this.liste = new Ship[100];
 		this.affichage.notificationNbViesRestantes(this.vies);
 	}
-
+	/**
+	 * @param pseudo
+	 * @param joueur
+	 */
+	public Partie(String pseudo, Joueur joueur)
+	{
+		this.joueur = joueur;
+		this.score = 0;
+		this.vies = 5;
+		this.pseudo = pseudo;
+		Ship player = new Ship(TAILLEZONE);
+		this.shipJoueur = player;
+		Zone zone = new Zone(TAILLEZONE);
+		this.zone = zone;
+		zone.modification(player.getPosition(), player.getType());
+		// this.liste = new Ship[100];
+	}
 	/**
 	 * Fonction permettant d'enlever une vie et retourne l'état du joueur(VIVANT ou MORT)
 	 * 
@@ -107,10 +123,11 @@ public abstract class Partie implements Scrollable
 
 	/**
 	 * Ajout de points Nombre de points à ajouter
+	 * @param score score à ajouter au score total
 	 */
-	protected void ajoutPoints()
+	protected void ajoutPoints(int score)
 	{
-		this.score = this.score + 100;
+		this.score = this.score + score;
 	}
 
 	/**
@@ -221,12 +238,8 @@ public abstract class Partie implements Scrollable
 
 	public boolean scroll()
 	{
-
-		/*
-		 * int i = 0; if (i == 0) { this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() -
-		 * 1) + 1)) + 0, 0), ContenuZone.ENNEMI); i = 1; } else { i = 0; }
-		 */
-
+		this.ajoutPoints((this.zone.getTaille()-this.shipJoueur.getPosition().getY())*5);
+		this.affichage.notificationScore(this.score);
 		if (this.zone.scroll())
 			this.vieMoins();
 		this.affichage.afficherZone(this.zone.getZone());

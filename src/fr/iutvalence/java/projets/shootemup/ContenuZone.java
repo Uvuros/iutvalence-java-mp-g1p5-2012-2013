@@ -19,5 +19,13 @@ public enum ContenuZone
 	/**
 	 * case avec un ennemi
 	 */
-	ENNEMI;
+	ENNEMI,
+	/**
+	 * case contenant un missile et un vaisseau
+	 */
+	MISSILE_VAISSEAU,
+	/**
+	 * case avec un missile joueur
+	 */
+	MISSILE;
 }

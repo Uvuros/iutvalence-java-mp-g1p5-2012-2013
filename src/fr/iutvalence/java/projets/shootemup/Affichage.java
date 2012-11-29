@@ -21,5 +21,9 @@ public interface Affichage
 	 *            vies restantes à afficher
 	 */
 	public void notificationNbViesRestantes(int nbViesRestantes);
+	/**
+	 * @param score à afficher
+	 */
+	public void notificationScore(int score);
 
 }

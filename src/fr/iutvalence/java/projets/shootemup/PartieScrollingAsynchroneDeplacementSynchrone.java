@@ -20,10 +20,11 @@ public class PartieScrollingAsynchroneDeplacementSynchrone extends Partie implem
 	 * @param affichage
 	 *            interface d'affichage
 	 */
-	public PartieScrollingAsynchroneDeplacementSynchrone(String pseudo, Joueur joueur, Affichage affichage)
+	public PartieScrollingAsynchroneDeplacementSynchrone(String pseudo, Joueur joueur,Affichage affichage)
 	{
 		super(pseudo, joueur, affichage);
 	}
+	
 
 	/**
 	 * Débuter une partie

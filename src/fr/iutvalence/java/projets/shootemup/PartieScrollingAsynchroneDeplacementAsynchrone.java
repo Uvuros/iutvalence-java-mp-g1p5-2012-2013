@@ -24,26 +24,25 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 	{
 		super(pseudo, joueur, affichage);
 	}
-
+	/**
+	 * @param pseudo
+	 * @param joueur
+	 */
+	public PartieScrollingAsynchroneDeplacementAsynchrone(String pseudo, Joueur joueur)
+	{
+		super(pseudo,joueur);
+	}
+	public Ship getShip()
+	{
+		return this.shipJoueur;
+	}
 	/**
 	 * Débuter une partie
 	 */
 	public void start()
 	{
-		int i = 0;
 		while (this.vies > 0)
-		{
-			if (i == 0)
-			{
-				this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() - 1) + 1)) + 0, 0),
-						ContenuZone.ENNEMI);
-				i = 1;
-			}
-			else
-			{
-				i = 0;
-			}
-			pause(250);
+		{	
 		}
 	}
 
@@ -56,5 +55,8 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 		}
 		return (this.vies >0);
 	}
-
+	public void setAffichage(Affichage a)
+	{
+		this.affichage = a;
+	}
 }

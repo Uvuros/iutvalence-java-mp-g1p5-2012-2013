@@ -85,7 +85,7 @@ public class Zone
 	 * @param valeur
 	 *            Valeur à ajouter <tt>VIDE</tt>, <tt>ENNEMI</tt> ou <tt>VAISSEAU</tt>
 	 */
-	public void modification(Position p, ContenuZone valeur)
+	public void modification(Position p,ContenuZone valeur)
 	{
 		this.zone[p.getY()][p.getX()] = valeur;
 	}
@@ -112,7 +112,10 @@ public class Zone
 	 * @return <tt>COLLISION</tt> s'il y a eu une collision lors du scroll sinon <tt>NON_COLLISION</tt>
 	 */
 	public boolean scroll()
-	{							// Scroll depuis le bas vers le haut de la zone
+	{		
+		Position p;
+		int i = 0;
+		// Scroll depuis le bas vers le haut de la zone
 		boolean collision = NON_COLLISION;
 		int indice_ligne = this.taille - 1;
 		int indice_colone = 0;
@@ -123,7 +126,7 @@ public class Zone
 				indice_ligne--;
 				indice_colone = 0;
 			}
-			if (this.zone[indice_ligne][indice_colone] != ContenuZone.JOUEUR)
+			if (this.zone[indice_ligne][indice_colone] != ContenuZone.JOUEUR && this.zone[indice_ligne][indice_colone] != ContenuZone.MISSILE)
 			{					// Si l'élément est différent du vaisseau joueur
 				if (indice_ligne - 1 < 0)
 				{				// Si l'on est sur la derniére ligne => créer une nouvelle ligne (ligne vide)
@@ -131,7 +134,7 @@ public class Zone
 				}
 				else
 				{
-					if (this.zone[indice_ligne - 1][indice_colone] != ContenuZone.JOUEUR)
+					if (this.zone[indice_ligne - 1][indice_colone] != ContenuZone.JOUEUR && this.zone[indice_ligne - 1][indice_colone] != ContenuZone.MISSILE)
 					{			// Si l'élément du dessus n'est pas le vaisseau joueur on copie la ligne du dessus
 						this.zone[indice_ligne][indice_colone] = this.zone[indice_ligne - 1][indice_colone];
 						this.zone[indice_ligne - 1][indice_colone] = ContenuZone.VIDE;
@@ -146,11 +149,48 @@ public class Zone
 			{
 				if (this.zone[indice_ligne - 1][indice_colone] == ContenuZone.ENNEMI)
 				{				// Si l'élément au dessus du vaisseau est un ennemi => collision
-					collision = COLLISION;
+					if (this.zone[indice_ligne][indice_colone] == ContenuZone.JOUEUR)
+					{
+						collision = COLLISION;
+					}
+					else
+					{
+						// ajout points comment faire ?
+						this.zone[indice_ligne][indice_colone] = ContenuZone.VIDE;
+						this.zone[indice_ligne -1][indice_colone] = ContenuZone.VIDE;
+					}
 				}
 			}
 			indice_colone = indice_colone + 1;
 
+		}
+		/*
+		 * int i = 0; if (i == 0) { this.zone.modification(new Position((int) (Math.random() * ((this.zone.getTaille() -
+		 * 1) + 1)) + 0, 0), ContenuZone.ENNEMI); i = 1; } else { i = 0; }
+		 */
+		if (i == 0)
+		{
+			try
+			{
+				if (this.contenu( p = new Position((int) (Math.random() * ((this.getTaille() - 1) + 1)) + 0, 0)) == ContenuZone.JOUEUR)
+				{
+					collision = COLLISION;
+				}
+				else
+				{
+					this.modification(p,ContenuZone.ENNEMI);
+				}
+			}
+			catch (HorsZoneException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		i = 1;
+		}
+		else
+		{
+			i = 0;
 		}
 		return collision;
 

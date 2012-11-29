@@ -75,4 +75,11 @@ public class AffichageAscii implements Affichage
 		this.nbViesRestantes = nbViesRestantes;
 
 	}
+
+	@Override
+	public void notificationScore(int score)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

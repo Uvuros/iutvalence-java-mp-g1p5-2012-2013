@@ -26,27 +26,22 @@ public class ThreadDeplacement extends Thread
 		this.joueur = j;
 	}
 
-	/**
-	 * créer un delai
-	 * 
-	 * @param delai
-	 *            durée du délai
-	 */
-	public void pause(long delai)
-	{
-		long t = System.currentTimeMillis();
-		while ((System.currentTimeMillis() - t) < delai)
-		{
 
-		}
-	}
 
 	public void run()
 	{
 		Direction mouvement = Direction.FIXE;
 		while (this.deplacement.move(this.joueur.getDeplacement()))
 		{
-			pause(150);
+			try
+			{
+				sleep(10);
+			}
+			catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

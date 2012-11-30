@@ -24,27 +24,35 @@ public class ThreadScroll extends Thread
 		this.toScroll = p;
 	}
 
-	/**
-	 * créer un delai
-	 * 
-	 * @param delai
-	 *            durée du délai
-	 */
-	public void pause(long delai)
-	{
-		long t = System.currentTimeMillis();
-		while ((System.currentTimeMillis() - t) < delai)
-		{
-
-		}
-	}
+	
 
 	public void run()
 	{
+		int pause = 250;
+		int boucle = 0;
+		int valeur_boucle = 20;
 		while (this.toScroll.scroll())
 		{
+			if (boucle == valeur_boucle)
+			{
+				if (pause > 80)
+				{
+				pause = pause -10;
+				boucle = 0;
+				valeur_boucle=valeur_boucle+1;
+				}
+			}
+			boucle = boucle + 1;
 			// Ajouter affichage
-			pause(250);
+			try
+			{
+				sleep(pause);
+			}
+			catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

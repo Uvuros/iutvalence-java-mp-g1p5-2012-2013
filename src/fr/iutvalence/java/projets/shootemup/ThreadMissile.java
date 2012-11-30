@@ -15,20 +15,7 @@ public class ThreadMissile extends Thread
 		this.etat = true;
 	}
 	
-	/**
-	 * créer un delai
-	 * 
-	 * @param delai
-	 *            durée du délai
-	 */
-	public void pause(long delai)
-	{
-		long t = System.currentTimeMillis();
-		while ((System.currentTimeMillis() - t) < delai)
-		{
-
-		}
-	}
+	
 	
 	public void run()
 	{
@@ -54,7 +41,15 @@ public class ThreadMissile extends Thread
 			}
 			while(this.etat)
 			{
-				pause(100);
+				try
+				{
+					sleep(100);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				Position newPos = new Position(this.position.getX(),this.position.getY()-1);
 				if(this.partie.zone.contenu(this.position) == ContenuZone.VIDE)
 				{

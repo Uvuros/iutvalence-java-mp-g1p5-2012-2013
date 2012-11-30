@@ -82,4 +82,12 @@ public class AffichageAscii implements Affichage
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void afficherTir(ContenuZone[][] zone, boolean debut)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

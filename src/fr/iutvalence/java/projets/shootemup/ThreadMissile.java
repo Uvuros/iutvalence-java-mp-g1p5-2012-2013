@@ -27,13 +27,13 @@ public class ThreadMissile extends Thread
 			{
 				case VIDE: 
 					this.partie.zone.modification(this.position,ContenuZone.MISSILE);
-					this.partie.affichage.afficherZone(this.partie.zone.getZone());
+					this.partie.affichage.afficherTir(this.partie.zone.getZone(),true);
 				break;
 				case ENNEMI: 
 					this.partie.zone.modification(this.position,ContenuZone.VIDE);
 					this.etat=false;
 					this.partie.ajoutPoints(50);
-					this.partie.affichage.afficherZone(this.partie.zone.getZone());
+					this.partie.affichage.afficherTir(this.partie.zone.getZone(),true);
 				break;
 				//case JOUEUR: this.partie.zone.modification(this.position,ContenuZone.MISSILE_VAISSEAU);
 				//break;

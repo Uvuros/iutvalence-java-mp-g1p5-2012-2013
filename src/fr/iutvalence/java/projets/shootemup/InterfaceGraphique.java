@@ -24,6 +24,7 @@ import fr.iutvalence.java.projets.shootemup.tests.TestPosition;
  */
 public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 {
+	private boolean tir;
 	private static final int ICON_SIZE = 32;
 	/**
 	 * 
@@ -49,6 +50,10 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	 * constante, image vaisseau
 	 */
 	private final static ImageIcon VAISSEAU = new ImageIcon("./images/vaisseau_32x32.png");
+	/**
+	 * constante, image vaisseau qui tir
+	 */
+	private final static ImageIcon VAISSEAU_TIR = new ImageIcon("./images/vaisseauTir_32x32.png");
 	/**
 	 * constante, image vide
 	 */
@@ -87,7 +92,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	public InterfaceGraphique(int size, Deplacement p) 
 	{
 		super("Shoot'em Up");
-		
+		this.tir = false;
 		this.p = p;
 		this.size = size;
 		
@@ -170,7 +175,12 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 							break;
 						case ENNEMI : this.labels[y][x].setIcon(MINE);
 							break;
-						case JOUEUR : this.labels[y][x].setIcon(VAISSEAU);
+						case JOUEUR : 
+							if (this.tir)
+							{
+								this.tir=false;					
+							}
+							this.labels[y][x].setIcon(VAISSEAU);
 							break;
 						default : this.labels[y][x].setIcon(VIDE);
 							break;
@@ -178,7 +188,6 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 					this.labels[y][x].repaint();
 			}
 		}	
-		vie.repaint();
 	}
 	@Override
 	public void notificationNbViesRestantes(int nbViesRestantes)
@@ -255,6 +264,34 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	{
 		this.scoreLabel.setText(""+score);
 		
+	}
+
+	@Override
+	public void afficherTir(ContenuZone[][] zone,boolean debut)
+	{
+		for (int y=0; y<this.size;y++) 
+		{
+			for (int x=0; x<this.size;x++)
+			{
+					switch(zone[y][x])
+					{
+					
+						case MISSILE : this.labels[y][x].setIcon(MISSILE);
+							break;
+						case ENNEMI : this.labels[y][x].setIcon(MINE);
+							break;
+						case JOUEUR : this.labels[y][x].setIcon(VAISSEAU_TIR);
+							break;
+						default : this.labels[y][x].setIcon(VIDE);
+							break;
+					}
+					this.labels[y][x].repaint();
+			}
+		}	
+		if(debut)
+			this.tir = true;
+
+			
 	}
 	
 

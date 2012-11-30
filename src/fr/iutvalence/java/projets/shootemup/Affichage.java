@@ -15,6 +15,13 @@ public interface Affichage
 	 *            zone que l'on veut afficher
 	 */
 	public void afficherZone(ContenuZone[][] zone);
+	/**
+	 * Affichage de la zone
+	 * 
+	 * @param zone
+	 *            zone que l'on veut afficher
+	 */
+	public void afficherTir(ContenuZone[][] zone,boolean debut);
 
 	/**
 	 * @param nbViesRestantes

@@ -33,6 +33,7 @@ public class ThreadDeplacement extends Thread
 		Direction mouvement = Direction.FIXE;
 		while (this.deplacement.move(this.joueur.getDeplacement()))
 		{
+			// Ajouter la gestion des slot missile ici ?
 			try
 			{
 				sleep(10);

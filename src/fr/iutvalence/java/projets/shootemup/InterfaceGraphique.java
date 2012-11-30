@@ -202,7 +202,9 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
-		// TODO Auto-generated method stub
+
+		if(((PartieScrollingAsynchroneDeplacementAsynchrone)p).enVie())
+		{
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_LEFT : this.p.move(Direction.GAUCHE);
@@ -216,12 +218,15 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		case KeyEvent.VK_SPACE : new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
 		break;
 		}
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		// TODO Auto-generated method stub
+
+		if(((PartieScrollingAsynchroneDeplacementAsynchrone)p).enVie())
+		{
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_LEFT : this.p.move(Direction.GAUCHE);
@@ -234,6 +239,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		break;		
 		case KeyEvent.VK_SPACE : new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
 		break;
+		}
 		}
 	}
 

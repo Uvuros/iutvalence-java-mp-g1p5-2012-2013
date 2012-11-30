@@ -210,9 +210,23 @@ public abstract class Partie implements Scrollable
 
 			try
 			{
-				this.zone.modification(oldPos, ContenuZone.VIDE);
-				boolean contenuzone = (this.zone.contenu(nouvPos) == ContenuZone.ENNEMI);
-				this.zone.modification(nouvPos, ContenuZone.JOUEUR);
+				if (this.zone.contenu(oldPos) == ContenuZone.MISSILE_VAISSEAU)
+				{
+					this.zone.modification(oldPos, ContenuZone.MISSILE);
+				}
+				else
+				{
+					this.zone.modification(oldPos, ContenuZone.VIDE);
+				}
+				if (this.zone.contenu(nouvPos) == ContenuZone.MISSILE)
+				{
+					this.zone.modification(nouvPos, ContenuZone.MISSILE_VAISSEAU);
+				}
+				else
+				{
+					this.zone.modification(nouvPos, ContenuZone.JOUEUR);
+				}
+				boolean contenuzone = (this.zone.contenu(nouvPos) == ContenuZone.ENNEMI);	
 				return !(contenuzone);
 			}
 			catch (HorsZoneException e)

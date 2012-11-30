@@ -32,12 +32,25 @@ public class ThreadMissile extends Thread
 				case ENNEMI: 
 					this.partie.zone.modification(this.position,ContenuZone.VIDE);
 					this.etat=false;
-					this.partie.ajoutPoints(50);
+					this.partie.ajoutPoints(50);	
 					this.partie.affichage.afficherTir(this.partie.zone.getZone(),true);
 				break;
 				//case JOUEUR: this.partie.zone.modification(this.position,ContenuZone.MISSILE_VAISSEAU);
 				//break;
 				//je traiterai ce cas plus tard car il nécessite certaines modifications
+			}
+			if (this.etat == false)
+			{
+				try
+				{
+					sleep(100);
+				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.partie.affichage.afficherTir(this.partie.zone.getZone(),false);
 			}
 			while(this.etat)
 			{
@@ -53,6 +66,7 @@ public class ThreadMissile extends Thread
 				Position newPos = new Position(this.position.getX(),this.position.getY()-1);
 				if(this.partie.zone.contenu(this.position) == ContenuZone.VIDE)
 				{
+					// si ma position est vide => toucher lors du scroll
 					this.partie.ajoutPoints(50);
 					this.etat = false;
 				}
@@ -64,12 +78,25 @@ public class ThreadMissile extends Thread
 					{
 						case VIDE: 
 							this.partie.zone.modification(newPos,ContenuZone.MISSILE);
-							this.partie.zone.modification(this.position,ContenuZone.VIDE);
-							this.partie.affichage.afficherZone(this.partie.zone.getZone());
+							if (this.partie.zone.contenu(this.position)== ContenuZone.MISSILE_VAISSEAU)
+							{
+								this.partie.zone.modification(this.position,ContenuZone.JOUEUR);
+							}
+							else
+							{
+								this.partie.zone.modification(this.position,ContenuZone.VIDE);
+							}
 						break;
 						case ENNEMI:
-							this.partie.zone.modification(this.position,ContenuZone.VIDE);
 							this.partie.zone.modification(newPos,ContenuZone.VIDE);
+							if (this.partie.zone.contenu(this.position)== ContenuZone.MISSILE_VAISSEAU)
+							{
+								this.partie.zone.modification(this.position,ContenuZone.JOUEUR);
+							}
+							else
+							{
+								this.partie.zone.modification(this.position,ContenuZone.VIDE);
+							}
 							this.etat = false;
 							this.partie.ajoutPoints(50);
 						break;
@@ -77,7 +104,7 @@ public class ThreadMissile extends Thread
 							//this.partie.zone.modification(this.position,ContenuZone.VIDE);
 							//this.partie.zone.modification(newPos,ContenuZone.MISSILE_VAISSEAu);
 					}
-					this.partie.affichage.afficherZone(this.partie.zone.getZone());
+					this.partie.affichage.afficherTir(this.partie.zone.getZone(),false);
 					this.position = newPos;
 				}
 				else

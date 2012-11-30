@@ -126,7 +126,7 @@ public class Zone
 				indice_ligne--;
 				indice_colone = 0;
 			}
-			if (this.zone[indice_ligne][indice_colone] != ContenuZone.JOUEUR && this.zone[indice_ligne][indice_colone] != ContenuZone.MISSILE)
+			if (this.zone[indice_ligne][indice_colone] != ContenuZone.JOUEUR && this.zone[indice_ligne][indice_colone] != ContenuZone.MISSILE && this.zone[indice_ligne][indice_colone] != ContenuZone.MISSILE_VAISSEAU)
 			{					// Si l'élément est différent du vaisseau joueur
 				if (indice_ligne - 1 < 0)
 				{				// Si l'on est sur la derniére ligne => créer une nouvelle ligne (ligne vide)
@@ -134,7 +134,7 @@ public class Zone
 				}
 				else
 				{
-					if (this.zone[indice_ligne - 1][indice_colone] != ContenuZone.JOUEUR && this.zone[indice_ligne - 1][indice_colone] != ContenuZone.MISSILE)
+					if (this.zone[indice_ligne - 1][indice_colone] != ContenuZone.JOUEUR && this.zone[indice_ligne - 1][indice_colone] != ContenuZone.MISSILE&& this.zone[indice_ligne][indice_colone] != ContenuZone.MISSILE_VAISSEAU)
 					{			// Si l'élément du dessus n'est pas le vaisseau joueur on copie la ligne du dessus
 						this.zone[indice_ligne][indice_colone] = this.zone[indice_ligne - 1][indice_colone];
 						this.zone[indice_ligne - 1][indice_colone] = ContenuZone.VIDE;
@@ -151,7 +151,7 @@ public class Zone
 				{
 				if (this.zone[indice_ligne - 1][indice_colone] == ContenuZone.ENNEMI)
 				{				// Si l'élément au dessus du vaisseau est un ennemi => collision
-					if (this.zone[indice_ligne][indice_colone] == ContenuZone.JOUEUR)
+					if (this.zone[indice_ligne][indice_colone] == ContenuZone.JOUEUR || this.zone[indice_ligne][indice_colone] == ContenuZone.MISSILE_VAISSEAU)
 					{
 						collision = COLLISION;
 					}
@@ -159,8 +159,9 @@ public class Zone
 					{
 						// ajout points comment faire ?
 						this.zone[indice_ligne][indice_colone] = ContenuZone.VIDE;
-						this.zone[indice_ligne -1][indice_colone] = ContenuZone.VIDE;
+						
 					}
+					this.zone[indice_ligne -1][indice_colone] = ContenuZone.VIDE;
 				}
 				}
 			}

@@ -178,10 +178,15 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 						case JOUEUR : 
 							if (this.tir)
 							{
-								this.tir=false;					
+								this.labels[y][x].setIcon(VAISSEAU_TIR);				
 							}
-							this.labels[y][x].setIcon(VAISSEAU);
+							else
+							{
+								this.labels[y][x].setIcon(VAISSEAU);
+							}
 							break;
+						case MISSILE_VAISSEAU : this.labels[y][x].setIcon(VAISSEAU);
+						break;
 						default : this.labels[y][x].setIcon(VIDE);
 							break;
 					}
@@ -280,7 +285,19 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 							break;
 						case ENNEMI : this.labels[y][x].setIcon(MINE);
 							break;
-						case JOUEUR : this.labels[y][x].setIcon(VAISSEAU_TIR);
+						case JOUEUR : 
+								if(debut)
+								{   
+									this.tir = true;
+									this.labels[y][x].setIcon(VAISSEAU_TIR);
+								}
+								else
+								{
+									this.tir = false;
+									this.labels[y][x].setIcon(VAISSEAU);
+								}
+								break;
+						case MISSILE_VAISSEAU : this.labels[y][x].setIcon(VAISSEAU);
 							break;
 						default : this.labels[y][x].setIcon(VIDE);
 							break;
@@ -288,9 +305,6 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 					this.labels[y][x].repaint();
 			}
 		}	
-		if(debut)
-			this.tir = true;
-
 			
 	}
 	

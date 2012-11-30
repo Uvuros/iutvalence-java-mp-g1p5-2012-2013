@@ -40,7 +40,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	/**
 	 * constante, image missile
 	 */
-	private final static ImageIcon MISSILE = new ImageIcon("./images/missile.jpg");
+	private final static ImageIcon MISSILE = new ImageIcon("./images/essaiTir2_32x32.png");
 	/**
 	 * constante, image mine
 	 */
@@ -54,9 +54,29 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	 */
 	private final static ImageIcon VIDE = new ImageIcon("./images/vide_32x32.png");
 	/**
-	 * constante, image vide
+	 * constante, 5 coeur
 	 */
-	private final static ImageIcon CINQCOEUR = new ImageIcon("./images/5coeur32.png");
+	private final static ImageIcon CINQCOEUR = new ImageIcon("./images/5coeur_32.png");
+	/**
+	 * constante,  4 coeur
+	 */
+	private final static ImageIcon QUATRECOEUR = new ImageIcon("./images/4coeur_32.png");
+	/**
+	 * constante,  3 coeur
+	 */
+	private final static ImageIcon TROISCOEUR = new ImageIcon("./images/3coeur_32.png");
+	/**
+	 * constante, 2 coeur
+	 */
+	private final static ImageIcon DEUXCOEUR = new ImageIcon("./images/2coeur_32.png");
+	/**
+	 * constante, 1 coeur
+	 */
+	private final static ImageIcon UNCOEUR = new ImageIcon("./images/1coeur_32.png");
+	/**
+	 * constante,  0 coeur
+	 */
+	private final static ImageIcon ZEROCOEUR = new ImageIcon("./images/0coeur_32.png");
 	
 	private JLabel scoreLabel;
 	private JLabel vie;
@@ -72,7 +92,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		this.size = size;
 		
 		
-		this.setSize(ICON_SIZE*size,ICON_SIZE*(size+2));
+		this.setSize(ICON_SIZE*size,ICON_SIZE*(size+3));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -106,12 +126,12 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		panelPrincipal.setSize(ICON_SIZE*size,ICON_SIZE*(size));
 		GridBagLayout glPrincipal = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
-				//c.weightx = ICON_SIZE;
-				//c.fill = GridBagConstraints.HORIZONTAL;
-				//c.gridx = 0;
-				//c.gridy = 0;
-				//panelPrincipal.add(vie,c);
-				//vie.repaint();
+				c.weightx = ICON_SIZE;
+				c.fill = GridBagConstraints.HORIZONTAL;
+				c.gridx = 0;
+				c.gridy = 0;
+				panelPrincipal.add(vie,c);
+				vie.repaint();
 		//c.weightx = ICON_SIZE*size;
 				c.fill = GridBagConstraints.HORIZONTAL;
 				c.gridx = 0;
@@ -163,7 +183,19 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	@Override
 	public void notificationNbViesRestantes(int nbViesRestantes)
 	{
-		// TODO Auto-generated method stub
+		switch(nbViesRestantes)
+		{
+			case 4: vie.setIcon(QUATRECOEUR);
+			break;
+			case 3 :vie.setIcon(TROISCOEUR);
+			break;
+			case 2 :vie.setIcon(DEUXCOEUR);
+			break;
+			case 1 :vie.setIcon(UNCOEUR);
+			break;
+			case 0 :vie.setIcon(ZEROCOEUR);
+			break;
+		}
 		
 	}
 

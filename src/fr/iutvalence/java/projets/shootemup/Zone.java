@@ -147,6 +147,8 @@ public class Zone
 			}
 			else
 			{
+				if(indice_ligne -1 >= 0)
+				{
 				if (this.zone[indice_ligne - 1][indice_colone] == ContenuZone.ENNEMI)
 				{				// Si l'élément au dessus du vaisseau est un ennemi => collision
 					if (this.zone[indice_ligne][indice_colone] == ContenuZone.JOUEUR)
@@ -159,6 +161,7 @@ public class Zone
 						this.zone[indice_ligne][indice_colone] = ContenuZone.VIDE;
 						this.zone[indice_ligne -1][indice_colone] = ContenuZone.VIDE;
 					}
+				}
 				}
 			}
 			indice_colone = indice_colone + 1;

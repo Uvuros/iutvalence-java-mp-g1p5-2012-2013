@@ -56,6 +56,13 @@ public class ThreadMissile extends Thread
 			{
 				pause(100);
 				Position newPos = new Position(this.position.getX(),this.position.getY()-1);
+				if(this.partie.zone.contenu(this.position) == ContenuZone.VIDE)
+				{
+					this.partie.ajoutPoints(50);
+					this.etat = false;
+				}
+				else
+				{
 				if (this.partie.zone.estDansZone(newPos))
 				{
 					switch(this.partie.zone.contenu(newPos))
@@ -82,6 +89,7 @@ public class ThreadMissile extends Thread
 				{
 					this.partie.zone.modification(this.position,ContenuZone.VIDE);
 					this.etat = false;
+				}
 				}
 			}
 		}

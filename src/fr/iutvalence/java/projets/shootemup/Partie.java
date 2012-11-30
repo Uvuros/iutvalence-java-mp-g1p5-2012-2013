@@ -232,6 +232,7 @@ public abstract class Partie implements Scrollable
 	{
 		if (!(this.deplacement(move)))
 			this.vieMoins();
+			this.affichage.notificationNbViesRestantes(this.vies);
 		this.affichage.afficherZone(this.zone.getZone());
 		return (this.vies > 0);
 	}
@@ -242,6 +243,7 @@ public abstract class Partie implements Scrollable
 		this.affichage.notificationScore(this.score);
 		if (this.zone.scroll())
 			this.vieMoins();
+			this.affichage.notificationNbViesRestantes(this.vies);
 		this.affichage.afficherZone(this.zone.getZone());
 		return this.enVie();
 	}

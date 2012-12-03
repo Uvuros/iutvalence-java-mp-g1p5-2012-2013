@@ -8,8 +8,6 @@ package fr.iutvalence.java.projets.shootemup;
  */
 public class Position
 {
-	
-	// FIXME (FIXED) si x et y ne peuvent pas être modifiés, les déclarer final
 	/**
 	 * position sur l'axe x
 	 */

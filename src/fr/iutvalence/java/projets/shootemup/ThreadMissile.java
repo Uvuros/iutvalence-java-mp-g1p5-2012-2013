@@ -35,9 +35,9 @@ public class ThreadMissile extends Thread
 					this.partie.ajoutPoints(50);	
 					this.partie.affichage.afficherTir(this.partie.zone.getZone(),true);
 				break;
-				//case JOUEUR: this.partie.zone.modification(this.position,ContenuZone.MISSILE_VAISSEAU);
-				//break;
-				//je traiterai ce cas plus tard car il nécessite certaines modifications
+				case JOUEUR: 
+				this.partie.zone.modification(this.position,ContenuZone.MISSILE_VAISSEAU);
+				break;
 			}
 			if (this.etat == false)
 			{
@@ -100,9 +100,12 @@ public class ThreadMissile extends Thread
 							this.etat = false;
 							this.partie.ajoutPoints(50);
 						break;
-						//case JOUEUR: 
-							//this.partie.zone.modification(this.position,ContenuZone.VIDE);
-							//this.partie.zone.modification(newPos,ContenuZone.MISSILE_VAISSEAu);
+						case JOUEUR: 
+							this.partie.zone.modification(this.position,ContenuZone.VIDE);
+							this.partie.zone.modification(newPos,ContenuZone.MISSILE_VAISSEAU);
+							break;
+						case MISSILE_VAISSEAU: 
+							break;
 					}
 					this.partie.affichage.afficherTir(this.partie.zone.getZone(),false);
 					this.position = newPos;

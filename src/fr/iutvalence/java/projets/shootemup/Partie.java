@@ -212,12 +212,13 @@ public abstract class Partie implements Scrollable
 			{
 				if (this.zone.contenu(oldPos) == ContenuZone.MISSILE_VAISSEAU)
 				{
-					this.zone.modification(oldPos, ContenuZone.MISSILE);
+					this.zone.modification(oldPos, ContenuZone.VIDE);
 				}
 				else
 				{
 					this.zone.modification(oldPos, ContenuZone.VIDE);
 				}
+				boolean contenuzone = (this.zone.contenu(nouvPos) == ContenuZone.ENNEMI);	
 				if (this.zone.contenu(nouvPos) == ContenuZone.MISSILE)
 				{
 					this.zone.modification(nouvPos, ContenuZone.MISSILE_VAISSEAU);
@@ -226,7 +227,6 @@ public abstract class Partie implements Scrollable
 				{
 					this.zone.modification(nouvPos, ContenuZone.JOUEUR);
 				}
-				boolean contenuzone = (this.zone.contenu(nouvPos) == ContenuZone.ENNEMI);	
 				return !(contenuzone);
 			}
 			catch (HorsZoneException e)

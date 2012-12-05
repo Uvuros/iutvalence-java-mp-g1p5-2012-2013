@@ -11,7 +11,7 @@ public abstract class Partie implements Scrollable
 	/**
 	 * Taille par défaut de la zone de jeux
 	 */
-	public static final int TAILLEZONE = 8;
+	public static final int TAILLEZONE = 14;
 
 	/**
 	 * Valeur représentant la mort du joueur
@@ -57,7 +57,7 @@ public abstract class Partie implements Scrollable
 	 * Affichage (visualisation de la partie)
 	 */
 	protected Affichage affichage;
-
+	protected InterfaceHighScore interfaceHighScore;
 	/**
 	 * Initialisation d'une partie met le score à 0, le nombre de vies à 5, crée un vaisseau joueur et la zone de jeux.
 	 * 
@@ -82,6 +82,24 @@ public abstract class Partie implements Scrollable
 		zone.modification(player.getPosition(), player.getType());
 		// this.liste = new Ship[100];
 		this.affichage.notificationNbViesRestantes(this.vies);
+	}
+	/**
+	 * @param pseudo
+	 * @param joueur
+	 */
+	public Partie(String pseudo, Joueur joueur, InterfaceHighScore interfaceHighScore)
+	{
+		this.joueur = joueur;
+		this.score = 0;
+		this.vies = 5;
+		this.pseudo = pseudo;
+		Ship player = new Ship(TAILLEZONE);
+		this.shipJoueur = player;
+		Zone zone = new Zone(TAILLEZONE);
+		this.zone = zone;
+		zone.modification(player.getPosition(), player.getType());
+		this.interfaceHighScore = interfaceHighScore;
+		// this.liste = new Ship[100];
 	}
 	/**
 	 * @param pseudo
@@ -253,7 +271,7 @@ public abstract class Partie implements Scrollable
 
 	public boolean scroll()
 	{
-		this.ajoutPoints((this.zone.getTaille()-this.shipJoueur.getPosition().getY())*5);
+		this.ajoutPoints((int)((1-(double)this.shipJoueur.getPosition().getY()/this.zone.getTaille())*10));
 		this.affichage.notificationScore(this.score);
 		if (this.zone.scroll())
 			this.vieMoins();

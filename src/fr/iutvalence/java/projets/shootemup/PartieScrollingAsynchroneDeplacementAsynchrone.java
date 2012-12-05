@@ -44,6 +44,8 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 		while (this.vies > 0)
 		{	
 		}
+		this.interfaceHighScore.setHighScore(new Score(this.pseudo, this.score));
+		System.out.println(this.interfaceHighScore.getHighScore());
 	}
 
 	@Override

@@ -23,10 +23,11 @@ public class SimulationPartieGraphiqueAleatoireScrollingAsynchroneDeplacementAsy
 	 */
 	public static void main(String[] args)
 	{
-		
+		// driver mysql : com.mysql.jdbc.Driver 
+		// url mysql : jdbc:mysql://localhost/test?
 		JoueurClavier joueur = new JoueurClavier();
 		PartieScrollingAsynchroneDeplacementAsynchrone  p = new PartieScrollingAsynchroneDeplacementAsynchrone("Uvuros",joueur);
-		InterfaceGraphique affichage = new InterfaceGraphique(8,p);
+		InterfaceGraphique affichage = new InterfaceGraphique(14,p);
 		p.setAffichage(affichage);
 		ThreadScroll s = new ThreadScroll(p);
 		ThreadDeplacement d = new ThreadDeplacement(p,joueur);

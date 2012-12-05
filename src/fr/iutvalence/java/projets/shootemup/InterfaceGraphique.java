@@ -27,10 +27,6 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	/**
 	 * 
 	 */
-	private ThreadDelaiTir tirPossible;
-	/**
-	 * 
-	 */
 	private boolean tir;
 	/**
 	 * 

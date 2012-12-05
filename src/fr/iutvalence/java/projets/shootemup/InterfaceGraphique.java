@@ -239,7 +239,13 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		break;
 		case KeyEvent.VK_UP : this.p.move(Direction.HAUT);
 		break;		 
-		case KeyEvent.VK_SPACE : new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
+		case KeyEvent.VK_SPACE : 
+			if (((PartieScrollingAsynchroneDeplacementAsynchrone)p).score > 75)
+				{
+					((PartieScrollingAsynchroneDeplacementAsynchrone)p).ajoutPoints(-75);
+					new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
+				}
+				
 		break;
 		}
 		}
@@ -261,7 +267,12 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 		break;
 		case KeyEvent.VK_UP : this.p.move(Direction.HAUT);
 		break;		
-		case KeyEvent.VK_SPACE : new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
+		case KeyEvent.VK_SPACE : 
+			if (((PartieScrollingAsynchroneDeplacementAsynchrone)p).score > 75)
+			{
+				((PartieScrollingAsynchroneDeplacementAsynchrone)p).ajoutPoints(-75);
+				new ThreadMissile((PartieScrollingAsynchroneDeplacementAsynchrone)p).start();
+			}
 		break;
 		}
 		}

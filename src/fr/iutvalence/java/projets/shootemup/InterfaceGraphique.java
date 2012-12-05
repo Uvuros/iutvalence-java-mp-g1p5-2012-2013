@@ -24,10 +24,20 @@ import fr.iutvalence.java.projets.shootemup.tests.TestPosition;
  */
 public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 {
-	private boolean tir;
-	private static final int ICON_SIZE = 32;
 	/**
 	 * 
+	 */
+	private ThreadDelaiTir tirPossible;
+	/**
+	 * 
+	 */
+	private boolean tir;
+	/**
+	 * 
+	 */
+	private static final int ICON_SIZE = 32;
+	/**
+	 * interface de deplacement
 	 */
 	private final Deplacement p;
 	/**

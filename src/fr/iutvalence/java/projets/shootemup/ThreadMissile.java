@@ -1,13 +1,29 @@
 package fr.iutvalence.java.projets.shootemup;
 
+/**
+ * @author deguitre & Pignet
+ *
+ */
 public class ThreadMissile extends Thread
 {
+	/**
+	 * 
+	 */
 	private PartieScrollingAsynchroneDeplacementAsynchrone partie;
 	
+	/**
+	 * 
+	 */
 	private boolean etat;
 	
+	/**
+	 * 
+	 */
 	private Position position;
 	
+	/**
+	 * @param p
+	 */
 	public ThreadMissile(PartieScrollingAsynchroneDeplacementAsynchrone p)
 	{
 		this.partie = p;
@@ -69,6 +85,7 @@ public class ThreadMissile extends Thread
 					// si ma position est vide => toucher lors du scroll
 					this.partie.ajoutPoints(50);
 					this.etat = false;
+					this.partie.affichage.afficherTir(this.partie.zone.getZone(),false);
 				}
 				else
 				{

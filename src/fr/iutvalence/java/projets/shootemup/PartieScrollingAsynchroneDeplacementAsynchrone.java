@@ -36,6 +36,10 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 	{
 		return this.shipJoueur;
 	}
+	public PartieScrollingAsynchroneDeplacementAsynchrone(String pseudo, Joueur joueur, InterfaceHighScore interfaceHighScore)
+	{
+		super(pseudo,joueur,interfaceHighScore);
+	}
 	/**
 	 * Débuter une partie
 	 */
@@ -43,7 +47,9 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 	{
 		while (this.vies > 0)
 		{	
+			System.out.println("1");
 		}
+		System.out.println("GAME OVER");
 		this.interfaceHighScore.setHighScore(new Score(this.pseudo, this.score));
 		System.out.println(this.interfaceHighScore.getHighScore());
 	}

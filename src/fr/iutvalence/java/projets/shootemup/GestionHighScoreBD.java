@@ -7,9 +7,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
+/**
+ * @author deguitre & Pignet
+ *
+ */
 public class GestionHighScoreBD implements InterfaceHighScore
 {
+	/**
+	 * 
+	 */
 	public Connection connection;
+	/**
+	 * @param driverJDBC driver JDBC
+	 * @param urlBD url de la BD
+	 * @param login login
+	 * @param password password
+	 */
 	public GestionHighScoreBD ( String driverJDBC,String urlBD,String login,String password)
 	{
 
@@ -64,7 +77,7 @@ public class GestionHighScoreBD implements InterfaceHighScore
 	{
 		Statement stat = null;
 		try {stat = this.connection.createStatement(); }catch (SQLException e) {}
-		String addScore = "INSERT INTO SCORE VALUES ('"+score.pseudo+"', '"+score.score+"')";
+		String addScore = "INSERT INTO SCORE(pseudo,score) VALUES ('"+score.pseudo+"', '"+score.score+"')";
 		try
 		{
 		stat.executeUpdate(addScore);

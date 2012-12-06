@@ -1,5 +1,6 @@
 package fr.iutvalence.java.projets.shootemup.tests;
 
+import fr.iutvalence.java.projets.shootemup.GestionHighScoreBD;
 import fr.iutvalence.java.projets.shootemup.InterfaceGraphique;
 import fr.iutvalence.java.projets.shootemup.JoueurClavier;
 import fr.iutvalence.java.projets.shootemup.PartieScrollingAsynchroneDeplacementAsynchrone;
@@ -25,8 +26,9 @@ public class SimulationPartieGraphiqueAleatoireScrollingAsynchroneDeplacementAsy
 	{
 		// driver mysql : com.mysql.jdbc.Driver 
 		// url mysql : jdbc:mysql://localhost/test?
+		GestionHighScoreBD GHS = new GestionHighScoreBD("com.mysql.jdbc.Driver ","jdbc:mysql://gigondas/pignetg","pignetg","pignetg");
 		JoueurClavier joueur = new JoueurClavier();
-		PartieScrollingAsynchroneDeplacementAsynchrone  p = new PartieScrollingAsynchroneDeplacementAsynchrone("Uvuros",joueur);
+		PartieScrollingAsynchroneDeplacementAsynchrone  p = new PartieScrollingAsynchroneDeplacementAsynchrone("Uvuros",joueur,GHS);
 		InterfaceGraphique affichage = new InterfaceGraphique(14,p);
 		p.setAffichage(affichage);
 		ThreadScroll s = new ThreadScroll(p);

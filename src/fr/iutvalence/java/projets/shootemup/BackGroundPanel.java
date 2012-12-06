@@ -5,6 +5,10 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+/**
+ * @author deguitre & Pignet
+ *
+ */
 public class BackGroundPanel extends JPanel {
 	private Image image;
 	    

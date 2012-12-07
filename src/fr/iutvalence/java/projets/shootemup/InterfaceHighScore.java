@@ -9,5 +9,5 @@ public interface InterfaceHighScore
 
 		public Score getHighScore();
 		
-		public void setHighScore(Score score);
+		public void addScore(Score score);
 }

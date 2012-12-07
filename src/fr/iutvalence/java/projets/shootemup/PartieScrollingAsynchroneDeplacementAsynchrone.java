@@ -50,7 +50,7 @@ public class PartieScrollingAsynchroneDeplacementAsynchrone extends Partie imple
 			System.out.println("1");
 		}
 		System.out.println("GAME OVER");
-		this.interfaceHighScore.setHighScore(new Score(this.pseudo, this.score));
+		this.interfaceHighScore.addScore(new Score(this.pseudo, this.score));
 		System.out.println(this.interfaceHighScore.getHighScore());
 	}
 

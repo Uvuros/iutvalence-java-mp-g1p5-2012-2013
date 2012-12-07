@@ -26,13 +26,13 @@ public class GestionHighScoreBD implements InterfaceHighScore
 	public GestionHighScoreBD ( String driverJDBC,String urlBD,String login,String password)
 	{
 
-		try {Class.forName(driverJDBC);}catch (ClassNotFoundException e) {}
+		try {Class.forName(driverJDBC);}catch (ClassNotFoundException e) {e.printStackTrace();}
 		this.connection = null;
 		try
 		{
 		this.connection = DriverManager.getConnection(urlBD, login, password);
 		}
-		catch (SQLException e) {}
+		catch (SQLException e) {e.printStackTrace();}
 		//try {this.connection.close(); } catch (SQLException e) {}
 	}
 
@@ -53,7 +53,7 @@ public class GestionHighScoreBD implements InterfaceHighScore
 			e1.printStackTrace();
 		}
 		ResultSet rs = null;
-		try {rs = stat.executeQuery(req);}catch (SQLException e) {}
+		try {rs = stat.executeQuery(req);}catch (SQLException e) {e.printStackTrace();}
 		try
 		{
 			while (rs.next())
@@ -73,16 +73,16 @@ public class GestionHighScoreBD implements InterfaceHighScore
 	}
 
 	@Override
-	public void setHighScore(Score score)
+	public void addScore(Score score)
 	{
 		Statement stat = null;
-		try {stat = this.connection.createStatement(); }catch (SQLException e) {}
+		try {stat = this.connection.createStatement(); }catch (SQLException e) {e.printStackTrace();}
 		String addScore = "INSERT INTO SCORE(pseudo,score) VALUES ('"+score.pseudo+"', '"+score.score+"')";
 		try
 		{
 		stat.executeUpdate(addScore);
 		}
-		catch (SQLException e) {}
+		catch (SQLException e) {e.printStackTrace();}
 		// TODO Auto-generated method stub
 		
 	}

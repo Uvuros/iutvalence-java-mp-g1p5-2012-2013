@@ -1,10 +1,13 @@
 package fr.iutvalence.java.projets.shootemup;
 
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 
 /**
@@ -30,13 +33,15 @@ public class GestionHighScoreBD implements InterfaceHighScore
 	public GestionHighScoreBD ( String driverJDBC,String urlBD,String login,String password)
 	{
 
-		try {Class.forName(driverJDBC);}catch (ClassNotFoundException e) {e.printStackTrace();}
+		try {Class.forName(driverJDBC);}catch (ClassNotFoundException e) 
+		{JOptionPane.showMessageDialog(new Frame(),"Attention !\n Le driver de base de donnée est introuvable \n la gestion du score ne fonctionnera pas !"," erreur driver manquant ",JOptionPane.WARNING_MESSAGE);/*e.printStackTrace();*/}
 		this.connection = null;
 		try
 		{
 		this.connection = DriverManager.getConnection(urlBD, login, password);
 		}
-		catch (SQLException e) {e.printStackTrace();}
+		catch (SQLException e) 
+		{JOptionPane.showMessageDialog(new Frame(),"Attention !\n La connection à la base de donnée à échoué\n la gestion du score ne fonctionnera pas !"," erreur connection bdd ",JOptionPane.WARNING_MESSAGE);/*e.printStackTrace();*/}
 		//try {this.connection.close(); } catch (SQLException e) {}
 	}
 

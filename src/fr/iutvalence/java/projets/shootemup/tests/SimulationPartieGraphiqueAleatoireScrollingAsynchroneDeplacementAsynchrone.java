@@ -26,7 +26,7 @@ public class SimulationPartieGraphiqueAleatoireScrollingAsynchroneDeplacementAsy
 	{
 		// driver mysql : com.mysql.jdbc.Driver 
 		// url mysql : jdbc:mysql://localhost/test?
-		GestionHighScoreBD GHS = new GestionHighScoreBD("com.mysql.jdbc.Driver ","jdbc:mysql://gigondas/pignetg","pignetg","pignetg");
+		GestionHighScoreBD GHS = new GestionHighScoreBD("com.mysql.jdbc.Driver","jdbc:mysql://gigondas/pignetg","pignetg","pignetg");
 		JoueurClavier joueur = new JoueurClavier();
 		PartieScrollingAsynchroneDeplacementAsynchrone  p = new PartieScrollingAsynchroneDeplacementAsynchrone("Uvuros",joueur,GHS);
 		InterfaceGraphique affichage = new InterfaceGraphique(14,p);

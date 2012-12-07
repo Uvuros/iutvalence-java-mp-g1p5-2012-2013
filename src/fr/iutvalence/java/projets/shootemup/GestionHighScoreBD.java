@@ -10,6 +10,10 @@ import java.sql.Statement;
 /**
  * @author deguitre & Pignet
  *
+ * Format de la BDD:
+ *table : SCORE
+ *champs: pseudo varchar(50)
+ *		  score int
  */
 public class GestionHighScoreBD implements InterfaceHighScore
 {

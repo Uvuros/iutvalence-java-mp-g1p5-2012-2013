@@ -32,5 +32,7 @@ public interface Affichage
 	 * @param score à afficher
 	 */
 	public void notificationScore(int score);
+	
+	public void bestScore(Score score);
 
 }

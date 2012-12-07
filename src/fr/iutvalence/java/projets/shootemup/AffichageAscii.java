@@ -90,4 +90,11 @@ public class AffichageAscii implements Affichage
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void bestScore(Score score)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

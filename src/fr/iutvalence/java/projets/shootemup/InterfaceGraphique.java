@@ -284,7 +284,7 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 	@Override
 	public void notificationScore(int score)
 	{
-		this.scoreLabel.setText(""+score);
+		this.scoreLabel.setText("Score : "+score);
 		
 	}
 
@@ -323,6 +323,13 @@ public class InterfaceGraphique extends JFrame implements Affichage, KeyListener
 			}
 		}	
 			
+	}
+
+	@Override
+	public void bestScore(Score score)
+	{
+		// TODO Auto-generated method stub
+		this.scoreLabel.setText(this.scoreLabel.getText()+" - Meilleur réalisé par : "+score.pseudo+" : "+score.score);
 	}
 	
 
